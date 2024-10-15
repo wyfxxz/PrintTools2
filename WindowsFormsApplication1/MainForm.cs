@@ -383,7 +383,12 @@ namespace WindowsFormsApplication1
                 this.lstContent.Items.Add(lvi);
             }
             else if (button == btnSave)
-            { } 
+            { 
+                if(this.lstContent.SelectedItems.Count >0)
+                {
+
+                }
+            } 
             else if (button == btnDelete)
             {
                 foreach (ListViewItem item in lstContent.SelectedItems)
