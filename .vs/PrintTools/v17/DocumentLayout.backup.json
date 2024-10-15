@@ -7,11 +7,11 @@
       "RelativeMoniker": "D:0:0:{6026F3C3-9F3F-4543-9CC6-5131BD9ACAC8}|WindowsFormsApplication1\\PrintTools.csproj|solutionrelative:windowsformsapplication1\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6026F3C3-9F3F-4543-9CC6-5131BD9ACAC8}|WindowsFormsApplication1\\PrintTools.csproj|d:\\cs4\\printtools2\\windowsformsapplication1\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{6026F3C3-9F3F-4543-9CC6-5131BD9ACAC8}|WindowsFormsApplication1\\PrintTools.csproj|D:\\cs4\\PrintTools2\\windowsformsapplication1\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{6026F3C3-9F3F-4543-9CC6-5131BD9ACAC8}|WindowsFormsApplication1\\PrintTools.csproj|solutionrelative:windowsformsapplication1\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6026F3C3-9F3F-4543-9CC6-5131BD9ACAC8}|WindowsFormsApplication1\\PrintTools.csproj|d:\\cs4\\printtools2\\windowsformsapplication1\\mycombobox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{6026F3C3-9F3F-4543-9CC6-5131BD9ACAC8}|WindowsFormsApplication1\\PrintTools.csproj|D:\\cs4\\PrintTools2\\windowsformsapplication1\\mycombobox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{6026F3C3-9F3F-4543-9CC6-5131BD9ACAC8}|WindowsFormsApplication1\\PrintTools.csproj|solutionrelative:windowsformsapplication1\\mycombobox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
@@ -22,8 +22,12 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 10,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:131:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
@@ -34,15 +38,31 @@
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
-              "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
             },
             {
               "$type": "Bookmark",
               "Name": "ST:130:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:133:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:132:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:134:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:136:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:135:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             },
             {
               "$type": "Document",
@@ -52,22 +72,10 @@
               "RelativeDocumentMoniker": "WindowsFormsApplication1\\MainForm.cs",
               "ToolTip": "D:\\cs4\\PrintTools2\\WindowsFormsApplication1\\MainForm.cs",
               "RelativeToolTip": "WindowsFormsApplication1\\MainForm.cs",
-              "ViewState": "AgIAAHgBAAAAAAAAAAASwIMBAAARAAAAAAAAAA==",
+              "ViewState": "AgIAAPwBAAAAAAAAAAAAAPoBAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-15T01:00:50.53Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "MainForm.cs [\u8BBE\u8BA1]",
-              "DocumentMoniker": "D:\\cs4\\PrintTools2\\WindowsFormsApplication1\\MainForm.cs",
-              "RelativeDocumentMoniker": "WindowsFormsApplication1\\MainForm.cs",
-              "ToolTip": "D:\\cs4\\PrintTools2\\WindowsFormsApplication1\\MainForm.cs [\u8BBE\u8BA1]",
-              "RelativeToolTip": "WindowsFormsApplication1\\MainForm.cs [\u8BBE\u8BA1]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-15T01:00:48.808Z",
-              "EditorCaption": " [\u8BBE\u8BA1]"
             },
             {
               "$type": "Document",
@@ -79,6 +87,18 @@
               "RelativeToolTip": "WindowsFormsApplication1\\myComboBox.cs [\u8BBE\u8BA1]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-15T01:00:47.589Z",
+              "EditorCaption": " [\u8BBE\u8BA1]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MainForm.cs [\u8BBE\u8BA1]",
+              "DocumentMoniker": "D:\\cs4\\PrintTools2\\WindowsFormsApplication1\\MainForm.cs",
+              "RelativeDocumentMoniker": "WindowsFormsApplication1\\MainForm.cs",
+              "ToolTip": "D:\\cs4\\PrintTools2\\WindowsFormsApplication1\\MainForm.cs [\u8BBE\u8BA1]",
+              "RelativeToolTip": "WindowsFormsApplication1\\MainForm.cs [\u8BBE\u8BA1]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-15T01:00:48.808Z",
               "EditorCaption": " [\u8BBE\u8BA1]"
             }
           ]

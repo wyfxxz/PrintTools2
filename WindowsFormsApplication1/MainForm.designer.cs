@@ -81,7 +81,6 @@ namespace WindowsFormsApplication1
             this.txtWidth = new System.Windows.Forms.TextBox();
             this.comPrtType = new System.Windows.Forms.ComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.myComboBox1 = new WindowsFormsApplication1.myComboBox(this.components);
             this.lstContent = new System.Windows.Forms.ListView();
             this.label22 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
@@ -97,7 +96,9 @@ namespace WindowsFormsApplication1
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.btnSaveTempData = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
+            this.btnModi = new System.Windows.Forms.Button();
+            this.myComboBox1 = new WindowsFormsApplication1.myComboBox(this.components);
+            this.btnClear = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -120,9 +121,9 @@ namespace WindowsFormsApplication1
             // btnPrint
             // 
             this.btnPrint.Location = new System.Drawing.Point(6, 236);
-            this.btnPrint.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnPrint.Margin = new System.Windows.Forms.Padding(4);
             this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(93, 42);
+            this.btnPrint.Size = new System.Drawing.Size(70, 42);
             this.btnPrint.TabIndex = 0;
             this.btnPrint.Text = "打印";
             this.btnPrint.UseVisualStyleBackColor = true;
@@ -130,10 +131,10 @@ namespace WindowsFormsApplication1
             // 
             // btnRefresh
             // 
-            this.btnRefresh.Location = new System.Drawing.Point(106, 236);
-            this.btnRefresh.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRefresh.Location = new System.Drawing.Point(84, 236);
+            this.btnRefresh.Margin = new System.Windows.Forms.Padding(4);
             this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(93, 42);
+            this.btnRefresh.Size = new System.Drawing.Size(70, 42);
             this.btnRefresh.TabIndex = 0;
             this.btnRefresh.Text = "刷新";
             this.btnRefresh.UseVisualStyleBackColor = true;
@@ -145,7 +146,7 @@ namespace WindowsFormsApplication1
             this.chkBold.Checked = true;
             this.chkBold.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkBold.Location = new System.Drawing.Point(460, 51);
-            this.chkBold.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkBold.Margin = new System.Windows.Forms.Padding(4);
             this.chkBold.Name = "chkBold";
             this.chkBold.Size = new System.Drawing.Size(70, 22);
             this.chkBold.TabIndex = 11;
@@ -166,7 +167,7 @@ namespace WindowsFormsApplication1
             // txtTitle
             // 
             this.txtTitle.Location = new System.Drawing.Point(538, 48);
-            this.txtTitle.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtTitle.Margin = new System.Windows.Forms.Padding(4);
             this.txtTitle.Name = "txtTitle";
             this.txtTitle.Size = new System.Drawing.Size(296, 28);
             this.txtTitle.TabIndex = 10;
@@ -175,7 +176,7 @@ namespace WindowsFormsApplication1
             // txtSize
             // 
             this.txtSize.Location = new System.Drawing.Point(414, 48);
-            this.txtSize.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtSize.Margin = new System.Windows.Forms.Padding(4);
             this.txtSize.Name = "txtSize";
             this.txtSize.Size = new System.Drawing.Size(38, 28);
             this.txtSize.TabIndex = 8;
@@ -183,10 +184,10 @@ namespace WindowsFormsApplication1
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(208, 236);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDelete.Location = new System.Drawing.Point(162, 236);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(4);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(93, 42);
+            this.btnDelete.Size = new System.Drawing.Size(70, 42);
             this.btnDelete.TabIndex = 14;
             this.btnDelete.Text = "删除";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -194,10 +195,10 @@ namespace WindowsFormsApplication1
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(309, 236);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAdd.Location = new System.Drawing.Point(240, 236);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(4);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(93, 42);
+            this.btnAdd.Size = new System.Drawing.Size(70, 42);
             this.btnAdd.TabIndex = 14;
             this.btnAdd.Text = "添加";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -206,7 +207,7 @@ namespace WindowsFormsApplication1
             // txtEnd
             // 
             this.txtEnd.Location = new System.Drawing.Point(304, 48);
-            this.txtEnd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtEnd.Margin = new System.Windows.Forms.Padding(4);
             this.txtEnd.Name = "txtEnd";
             this.txtEnd.Size = new System.Drawing.Size(102, 28);
             this.txtEnd.TabIndex = 2;
@@ -215,7 +216,7 @@ namespace WindowsFormsApplication1
             // txtColumn
             // 
             this.txtColumn.Location = new System.Drawing.Point(843, 50);
-            this.txtColumn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtColumn.Margin = new System.Windows.Forms.Padding(4);
             this.txtColumn.Name = "txtColumn";
             this.txtColumn.Size = new System.Drawing.Size(54, 28);
             this.txtColumn.TabIndex = 2;
@@ -224,7 +225,7 @@ namespace WindowsFormsApplication1
             // txtStart
             // 
             this.txtStart.Location = new System.Drawing.Point(190, 48);
-            this.txtStart.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtStart.Margin = new System.Windows.Forms.Padding(4);
             this.txtStart.Name = "txtStart";
             this.txtStart.Size = new System.Drawing.Size(102, 28);
             this.txtStart.TabIndex = 2;
@@ -233,7 +234,7 @@ namespace WindowsFormsApplication1
             // txtRow
             // 
             this.txtRow.Location = new System.Drawing.Point(906, 48);
-            this.txtRow.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtRow.Margin = new System.Windows.Forms.Padding(4);
             this.txtRow.Name = "txtRow";
             this.txtRow.Size = new System.Drawing.Size(58, 28);
             this.txtRow.TabIndex = 2;
@@ -403,7 +404,7 @@ namespace WindowsFormsApplication1
             // txtLabelRow
             // 
             this.txtLabelRow.Location = new System.Drawing.Point(69, 172);
-            this.txtLabelRow.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtLabelRow.Margin = new System.Windows.Forms.Padding(4);
             this.txtLabelRow.Name = "txtLabelRow";
             this.txtLabelRow.Size = new System.Drawing.Size(54, 28);
             this.txtLabelRow.TabIndex = 2;
@@ -430,7 +431,7 @@ namespace WindowsFormsApplication1
             // txtLabelCol
             // 
             this.txtLabelCol.Location = new System.Drawing.Point(195, 174);
-            this.txtLabelCol.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtLabelCol.Margin = new System.Windows.Forms.Padding(4);
             this.txtLabelCol.Name = "txtLabelCol";
             this.txtLabelCol.Size = new System.Drawing.Size(58, 28);
             this.txtLabelCol.TabIndex = 2;
@@ -517,7 +518,7 @@ namespace WindowsFormsApplication1
             // 
             this.panel1.Controls.Add(this.ppVControl);
             this.panel1.Location = new System.Drawing.Point(450, 285);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1344, 706);
             this.panel1.TabIndex = 15;
@@ -529,7 +530,7 @@ namespace WindowsFormsApplication1
             this.ppVControl.Document = this.pdControl;
             this.ppVControl.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.ppVControl.Location = new System.Drawing.Point(4, 4);
-            this.ppVControl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ppVControl.Margin = new System.Windows.Forms.Padding(4);
             this.ppVControl.Name = "ppVControl";
             this.ppVControl.Size = new System.Drawing.Size(1329, 645);
             this.ppVControl.TabIndex = 1;
@@ -539,7 +540,7 @@ namespace WindowsFormsApplication1
             // txtWidth
             // 
             this.txtWidth.Location = new System.Drawing.Point(1108, 48);
-            this.txtWidth.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtWidth.Margin = new System.Windows.Forms.Padding(4);
             this.txtWidth.Name = "txtWidth";
             this.txtWidth.Size = new System.Drawing.Size(50, 28);
             this.txtWidth.TabIndex = 8;
@@ -583,16 +584,6 @@ namespace WindowsFormsApplication1
             this.panel2.Size = new System.Drawing.Size(1190, 238);
             this.panel2.TabIndex = 20;
             // 
-            // myComboBox1
-            // 
-            this.myComboBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.myComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.myComboBox1.Location = new System.Drawing.Point(975, 46);
-            this.myComboBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.myComboBox1.Name = "myComboBox1";
-            this.myComboBox1.Size = new System.Drawing.Size(122, 29);
-            this.myComboBox1.TabIndex = 22;
-            // 
             // lstContent
             // 
             this.lstContent.HideSelection = false;
@@ -601,6 +592,7 @@ namespace WindowsFormsApplication1
             this.lstContent.Size = new System.Drawing.Size(1183, 152);
             this.lstContent.TabIndex = 21;
             this.lstContent.UseCompatibleStateImageBehavior = false;
+            this.lstContent.SelectedIndexChanged += new System.EventHandler(this.lstContent_SelectedIndexChanged);
             // 
             // label22
             // 
@@ -695,9 +687,9 @@ namespace WindowsFormsApplication1
             // btnImportTempData
             // 
             this.btnImportTempData.Location = new System.Drawing.Point(6, 286);
-            this.btnImportTempData.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnImportTempData.Margin = new System.Windows.Forms.Padding(4);
             this.btnImportTempData.Name = "btnImportTempData";
-            this.btnImportTempData.Size = new System.Drawing.Size(93, 42);
+            this.btnImportTempData.Size = new System.Drawing.Size(102, 42);
             this.btnImportTempData.TabIndex = 0;
             this.btnImportTempData.Text = "导入模板";
             this.btnImportTempData.UseVisualStyleBackColor = true;
@@ -709,30 +701,51 @@ namespace WindowsFormsApplication1
             // 
             // btnSaveTempData
             // 
-            this.btnSaveTempData.Location = new System.Drawing.Point(106, 285);
+            this.btnSaveTempData.Location = new System.Drawing.Point(115, 285);
             this.btnSaveTempData.Name = "btnSaveTempData";
-            this.btnSaveTempData.Size = new System.Drawing.Size(93, 42);
+            this.btnSaveTempData.Size = new System.Drawing.Size(102, 42);
             this.btnSaveTempData.TabIndex = 21;
             this.btnSaveTempData.Text = "保存数据";
             this.btnSaveTempData.UseVisualStyleBackColor = true;
             this.btnSaveTempData.Click += new System.EventHandler(this.btnCommand_Click);
             // 
-            // btnSave
+            // btnModi
             // 
-            this.btnSave.Location = new System.Drawing.Point(409, 236);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(93, 42);
-            this.btnSave.TabIndex = 22;
-            this.btnSave.Text = "保存";
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnCommand_Click);
+            this.btnModi.Location = new System.Drawing.Point(318, 236);
+            this.btnModi.Name = "btnModi";
+            this.btnModi.Size = new System.Drawing.Size(70, 42);
+            this.btnModi.TabIndex = 22;
+            this.btnModi.Text = "修改";
+            this.btnModi.UseVisualStyleBackColor = true;
+            this.btnModi.Click += new System.EventHandler(this.btnCommand_Click);
+            // 
+            // myComboBox1
+            // 
+            this.myComboBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.myComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.myComboBox1.Location = new System.Drawing.Point(975, 46);
+            this.myComboBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.myComboBox1.Name = "myComboBox1";
+            this.myComboBox1.Size = new System.Drawing.Size(122, 29);
+            this.myComboBox1.TabIndex = 22;
+            // 
+            // btnClear
+            // 
+            this.btnClear.Location = new System.Drawing.Point(396, 236);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(70, 42);
+            this.btnClear.TabIndex = 23;
+            this.btnClear.Text = "清空";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnCommand_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1800, 1053);
-            this.Controls.Add(this.btnSave);
+            this.Controls.Add(this.btnClear);
+            this.Controls.Add(this.btnModi);
             this.Controls.Add(this.btnSaveTempData);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -743,7 +756,7 @@ namespace WindowsFormsApplication1
             this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.btnImportTempData);
             this.Controls.Add(this.btnPrint);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainForm";
             this.Text = "标签打印";
             this.Load += new System.EventHandler(this.MainForm_Load);
@@ -872,7 +885,8 @@ namespace WindowsFormsApplication1
         private System.Windows.Forms.Button btnSaveTempData;
          
         private myComboBox myComboBox1;
-        private Button btnSave;
+        private Button btnModi;
+        private Button btnClear;
     }
 }
 
