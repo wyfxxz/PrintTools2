@@ -163,7 +163,7 @@ namespace WindowsFormsApplication1
             g.PageUnit = GraphicsUnit.Millimeter;//单位
             //先画一个矩形
             Pen lineColor = new Pen(Color.Black, 0.2f);
-            g.FillRectangle(Brushes.Linen, 0, 0, width_p, height_p);
+            g.FillRectangle(Brushes.White, 0, 0, width_p, height_p);
             printHelper.Print(g);
         }
 
@@ -220,6 +220,10 @@ namespace WindowsFormsApplication1
             margin_lr = int.Parse(this.txtMarginLR.Text);
             margin_tb = int.Parse(this.txtMarginTB.Text);
 
+            //最优横轴刻度设置
+            this.txtaxisLengthX.Text = ((width_p - 2 * margin_lr)).ToString();
+            this.txtaxisLengthY.Text = ((height_p - 2 * margin_tb)).ToString();
+
             int axisLengthX = int.Parse(this.txtaxisLengthX.Text); // 坐标轴长�?
             int axisLengthY = int.Parse(this.txtaxisLengthY.Text); // 坐标轴长�?
             float scaleX = (width_p - 2 * margin_tb) * 1.0f / axisLengthX; // 每个单位 像素
@@ -227,6 +231,7 @@ namespace WindowsFormsApplication1
             int gapX = int.Parse(this.txtGapX.Text);
             int gapY = int.Parse(this.txtGapY.Text);
 
+        
             if (this.chkGrid.Checked)//网格
             {
 
@@ -385,31 +390,39 @@ namespace WindowsFormsApplication1
                     lvi.SubItems.Add(this.myComboBox1.Enabled == false ? "0" : this.myComboBox1.Text.Trim());
                     lvi.SubItems.Add(this.txtWidth.Enabled == false ? "0" : this.txtWidth.Text.Trim());
                     this.lstContent.Items.Add(lvi);
+                    btnRefresh_Click(sender, e);
                     break;
                 case "修改":
                     if (this.lstContent.SelectedItems.Count > 0)
                     {
                         int index = lstContent.SelectedIndices[0];
-                        lstContent.Items[index].SubItems[1].Text = this.comPrtType.Text.Trim();
-                        lstContent.Items[index].SubItems[2].Text = ColorTranslator.ToHtml(this.lblColor.BackColor);
-                        lstContent.Items[index].SubItems[3].Text = this.txtStart.Text.Trim();
-                        lstContent.Items[index].SubItems[4].Text = this.txtEnd.Enabled == false ? "0" : this.txtEnd.Text.Trim();
+                        if (lstContent.Items[index].SubItems[1].Text == this.comPrtType.Text.Trim())
+                        {
+                            //lstContent.Items[index].SubItems[1].Text = this.comPrtType.Text.Trim();
+                            lstContent.Items[index].SubItems[2].Text = ColorTranslator.ToHtml(this.lblColor.BackColor);
+                            lstContent.Items[index].SubItems[3].Text = this.txtStart.Text.Trim();
+                            if (this.txtEnd.Enabled == true)
+                                lstContent.Items[index].SubItems[4].Text = this.txtEnd.Text.Trim();
 
 
-                        lstContent.Items[index].SubItems[5].Text = (this.txtSize.Enabled == false ? "0" : this.txtSize.Text.Trim());
-                        lstContent.Items[index].SubItems[6].Text = (this.chkBold.Enabled == false ? "0" : (this.chkBold.Checked ? FontStyle.Bold : FontStyle.Regular).ToString());
-                        lstContent.Items[index].SubItems[7].Text = this.txtTitle.Enabled == false ? "0" : this.txtTitle.Text.Trim();
+                            lstContent.Items[index].SubItems[5].Text = (this.txtSize.Enabled == false ? "0" : this.txtSize.Text.Trim());
+                            lstContent.Items[index].SubItems[6].Text = (this.chkBold.Enabled == false ? "0" : (this.chkBold.Checked ? FontStyle.Bold : FontStyle.Regular).ToString());
+                            lstContent.Items[index].SubItems[7].Text = this.txtTitle.Enabled == false ? "0" : this.txtTitle.Text.Trim();
 
-                        lstContent.Items[index].SubItems[8].Text = this.txtRow.Enabled == false ? "0" : this.txtRow.Text.Trim();
-                        lstContent.Items[index].SubItems[9].Text = this.txtColumn.Enabled == false ? "0" : this.txtColumn.Text.Trim();
-                        lstContent.Items[index].SubItems[10].Text = this.myComboBox1.Enabled == false ? "0" : this.myComboBox1.Text.Trim();
-                        lstContent.Items[index].SubItems[11].Text = this.txtWidth.Enabled == false ? "0" : this.txtWidth.Text.Trim();
-
+                            lstContent.Items[index].SubItems[8].Text = this.txtRow.Enabled == false ? "0" : this.txtRow.Text.Trim();
+                            lstContent.Items[index].SubItems[9].Text = this.txtColumn.Enabled == false ? "0" : this.txtColumn.Text.Trim();
+                            lstContent.Items[index].SubItems[10].Text = this.myComboBox1.Enabled == false ? "0" : this.myComboBox1.Text.Trim();
+                            lstContent.Items[index].SubItems[11].Text = this.txtWidth.Enabled == false ? "0" : this.txtWidth.Text.Trim();
+                        }
+                        else
+                            MessageBox.Show("不同类别不能修改保存！");
+                        btnRefresh_Click(sender, e);
                     }
                     break;
                 case "删除":
                     foreach (ListViewItem item in lstContent.SelectedItems)
                         lstContent.Items.Remove(item);
+                    btnRefresh_Click(sender, e);
                     break;
                 case "导入模板":
                     openFileDialog1.Title = "选择需要打开的目标";
@@ -574,6 +587,7 @@ namespace WindowsFormsApplication1
             this.txtColumn.Enabled = true;
             this.txtWidth.Enabled = true;
             this.myComboBox1.Enabled = true;
+            this.comPrtType.Enabled = true;
         }
 
         private void lstContent_SelectedIndexChanged(object sender, EventArgs e)
@@ -582,6 +596,7 @@ namespace WindowsFormsApplication1
 
             if (lstContent.SelectedItems.Count > 0)
             {
+                this.comPrtType.Enabled=false;
                 ListViewItem selectedItem = lstContent.SelectedItems[0];
                 string type = selectedItem.SubItems[1].Text;
                 string color = selectedItem.SubItems[2].Text;

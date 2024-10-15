@@ -30,3 +30,4 @@ D:\cs4\PrintTools2\WindowsFormsApplication1\obj\x86\Debug\WindowsFormsApplicatio
 D:\cs4\PrintTools2\WindowsFormsApplication1\obj\x86\Debug\PrintTools.csproj.GenerateResource.Cache
 D:\cs4\PrintTools2\WindowsFormsApplication1\obj\x86\Debug\PrintTools.csproj.AssemblyReference.cache
 D:\cs4\PrintTools2\WindowsFormsApplication1\obj\x86\Debug\PrintTools.csproj.CoreCompileInputs.cache
+D:\cs4\PrintTools2\WindowsFormsApplication1\obj\x86\Debug\WindowsFormsApplication1.ConnectionControl.resources

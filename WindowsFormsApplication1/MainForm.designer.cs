@@ -97,12 +97,15 @@ namespace WindowsFormsApplication1
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.btnSaveTempData = new System.Windows.Forms.Button();
             this.btnModi = new System.Windows.Forms.Button();
-            this.myComboBox1 = new WindowsFormsApplication1.myComboBox(this.components);
             this.btnClear = new System.Windows.Forms.Button();
+            this.myComboBox1 = new WindowsFormsApplication1.myComboBox(this.components);
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pdControl
@@ -705,7 +708,7 @@ namespace WindowsFormsApplication1
             this.btnSaveTempData.Name = "btnSaveTempData";
             this.btnSaveTempData.Size = new System.Drawing.Size(102, 42);
             this.btnSaveTempData.TabIndex = 21;
-            this.btnSaveTempData.Text = "保存数据";
+            this.btnSaveTempData.Text = "导出模板";
             this.btnSaveTempData.UseVisualStyleBackColor = true;
             this.btnSaveTempData.Click += new System.EventHandler(this.btnCommand_Click);
             // 
@@ -719,16 +722,6 @@ namespace WindowsFormsApplication1
             this.btnModi.UseVisualStyleBackColor = true;
             this.btnModi.Click += new System.EventHandler(this.btnCommand_Click);
             // 
-            // myComboBox1
-            // 
-            this.myComboBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.myComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.myComboBox1.Location = new System.Drawing.Point(975, 46);
-            this.myComboBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.myComboBox1.Name = "myComboBox1";
-            this.myComboBox1.Size = new System.Drawing.Size(122, 29);
-            this.myComboBox1.TabIndex = 22;
-            // 
             // btnClear
             // 
             this.btnClear.Location = new System.Drawing.Point(396, 236);
@@ -739,11 +732,39 @@ namespace WindowsFormsApplication1
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnCommand_Click);
             // 
+            // myComboBox1
+            // 
+            this.myComboBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.myComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.myComboBox1.Location = new System.Drawing.Point(975, 46);
+            this.myComboBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.myComboBox1.Name = "myComboBox1";
+            this.myComboBox1.Size = new System.Drawing.Size(122, 29);
+            this.myComboBox1.TabIndex = 22;
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 1022);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(1800, 31);
+            this.statusStrip1.TabIndex = 24;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(206, 24);
+            this.toolStripStatusLabel1.Text = "每个坐标点之间为0.5cm";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1800, 1053);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnModi);
             this.Controls.Add(this.btnSaveTempData);
@@ -758,6 +779,7 @@ namespace WindowsFormsApplication1
             this.Controls.Add(this.btnPrint);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "标签打印";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.groupBox2.ResumeLayout(false);
@@ -767,7 +789,10 @@ namespace WindowsFormsApplication1
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -887,6 +912,8 @@ namespace WindowsFormsApplication1
         private myComboBox myComboBox1;
         private Button btnModi;
         private Button btnClear;
+        private StatusStrip statusStrip1;
+        private ToolStripStatusLabel toolStripStatusLabel1;
     }
 }
 
