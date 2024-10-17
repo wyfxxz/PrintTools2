@@ -76,6 +76,7 @@ namespace WindowsFormsApplication1
         private void MainForm_Load(object sender, EventArgs e)
         {
             InitInfo(); InitGrid();
+            //this.ppVControl.Visible = false;
             InitDocument();
         }
         
@@ -215,8 +216,9 @@ namespace WindowsFormsApplication1
         /// <param name="e"></param>
         private void btnRefresh_Click(object sender, EventArgs e)
         {
+           // this.ppVControl.Visible = false;
             InitInfo();
-            this.ppVControl.Visible = true;
+            
             List<PrintInfo> lstPrintInfos = new List<PrintInfo>();
 
             width_p = int.Parse(this.txtPaperWidth.Text);
@@ -372,7 +374,10 @@ namespace WindowsFormsApplication1
             }
 
             printHelper.PrintInfos = lstPrintInfos;
-              
+
+           
+            //this.ppVControl.Visible = true;
+            //this.pdControl.Print();
             this.ppVControl.InvalidatePreview();//刷新文档的预览，重新调用PrintDocument的Print方法
         }
 
