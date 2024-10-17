@@ -12,6 +12,7 @@ using Model;
 using System.Drawing.Drawing2D;
 using System.IO;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Diagnostics.Eventing.Reader;
 
 
 namespace WindowsFormsApplication1
@@ -77,7 +78,7 @@ namespace WindowsFormsApplication1
             InitInfo(); InitGrid();
             InitDocument();
         }
-
+        
         private void InitInfo()
         {
             PrinterSettings printSetting = new PrinterSettings();
@@ -88,6 +89,11 @@ namespace WindowsFormsApplication1
             margin_lr = int.Parse(this.txtMarginLR.Text);
             margin_tb = int.Parse(this.txtMarginTB.Text);
 
+            this.vScrollBar1.Minimum = 0;
+            this.vScrollBar1.Maximum= height_p - 2* margin_tb;
+            this.hScrollBar1.Minimum= 0;
+            this.hScrollBar1.Maximum=width_p-2*margin_lr;
+
             int width_in = MM2Inch(width_p);
             int height_in = MM2Inch(height_p);
             PageSettings pageSetting = new PageSettings(printSetting);
@@ -97,6 +103,7 @@ namespace WindowsFormsApplication1
             int margin_tb_in = MM2Inch(margin_tb);
             pageSetting.Margins = new Margins(margin_lr_in, margin_lr_in, margin_tb_in, margin_tb_in);
             this.pdControl.DefaultPageSettings = pageSetting;
+
         }
         private void InitGrid()
         {
@@ -209,7 +216,7 @@ namespace WindowsFormsApplication1
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             InitInfo();
-
+            this.ppVControl.Visible = true;
             List<PrintInfo> lstPrintInfos = new List<PrintInfo>();
 
             width_p = int.Parse(this.txtPaperWidth.Text);
@@ -365,6 +372,7 @@ namespace WindowsFormsApplication1
             }
 
             printHelper.PrintInfos = lstPrintInfos;
+              
             this.ppVControl.InvalidatePreview();//刷新文档的预览，重新调用PrintDocument的Print方法
         }
 
@@ -596,7 +604,7 @@ namespace WindowsFormsApplication1
 
             if (lstContent.SelectedItems.Count > 0)
             {
-                this.comPrtType.Enabled=false;
+                this.comPrtType.Enabled = false;
                 ListViewItem selectedItem = lstContent.SelectedItems[0];
                 string type = selectedItem.SubItems[1].Text;
                 string color = selectedItem.SubItems[2].Text;
@@ -609,8 +617,9 @@ namespace WindowsFormsApplication1
                 int col = int.Parse(selectedItem.SubItems[9].Text);
                 int dashstyle = int.Parse(selectedItem.SubItems[10].Text);
                 float width = float.Parse(selectedItem.SubItems[11].Text);
-                switch (type) { 
-                  case "文本":
+                switch (type)
+                {
+                    case "文本":
                         this.comPrtType.SelectedIndex = 0;
 
                         this.txtEnd.Enabled = false;
@@ -618,27 +627,27 @@ namespace WindowsFormsApplication1
                         this.txtColumn.Enabled = false;
                         this.myComboBox1.Enabled = false;
                         this.txtWidth.Enabled = false;
-                    break;
+                        break;
 
-                case "表格":
+                    case "表格":
                         this.comPrtType.SelectedIndex = 1;
                         this.txtSize.Enabled = false;
-                    this.chkBold.Enabled = false;
-                    this.txtTitle.Enabled = false;
+                        this.chkBold.Enabled = false;
+                        this.txtTitle.Enabled = false;
 
-                    //MessageBox.Show("B"); 
-                    break;
+                        //MessageBox.Show("B"); 
+                        break;
 
-                case "直线":
+                    case "直线":
                         this.comPrtType.SelectedIndex = 2;
                         this.txtSize.Enabled = false;
                         this.chkBold.Enabled = false;
                         this.txtTitle.Enabled = false;
                         this.txtRow.Enabled = false;
                         this.txtColumn.Enabled = false;
-                    //MessageBox.Show("C");
-                    break;
-                case "点":
+                        //MessageBox.Show("C");
+                        break;
+                    case "点":
                         this.comPrtType.SelectedIndex = 3;
                         this.txtSize.Enabled = false;
                         this.chkBold.Enabled = false;
@@ -646,38 +655,110 @@ namespace WindowsFormsApplication1
                         this.txtRow.Enabled = false;
                         this.txtColumn.Enabled = false;
                         this.txtTitle.Enabled = false;
-                    //MessageBox.Show("C"); 
-                    break;
+
+                        break;
+                    
+
 
                 }
-                // (this.comPrtType.Text.Trim());
-                //lvi.SubItems.Add(ColorTranslator.ToHtml(this.lblColor.BackColor));
-                //lvi.SubItems.Add(this.txtStart.Text.Trim());
-                //lvi.SubItems.Add(this.txtEnd.Enabled == false ? "0" : this.txtEnd.Text.Trim());
-                //lvi.SubItems.Add(this.txtSize.Enabled == false ? "0" : this.txtSize.Text.Trim());
-                //lvi.SubItems.Add((this.chkBold.Enabled == false ? "0" : (this.chkBold.Checked ? FontStyle.Bold : FontStyle.Regular).ToString()));
-                //lvi.SubItems.Add(this.txtTitle.Enabled == false ? "0" : this.txtTitle.Text.Trim());
-
-                //lvi.SubItems.Add(this.txtRow.Enabled == false ? "0" : this.txtRow.Text.Trim());
-                //lvi.SubItems.Add(this.txtColumn.Enabled == false ? "0" : this.txtColumn.Text.Trim());
-                //lvi.SubItems.Add(this.myComboBox1.Enabled == false ? "0" : this.myComboBox1.Text.Trim());
-                //lvi.SubItems.Add(this.txtWidth.Enabled == false ? "0" : this.txtWidth.Text.Trim());
 
                 this.lblColor.BackColor = ColorTranslator.FromHtml(selectedItem.SubItems[2].Text);
                 this.txtStart.Text = selectedItem.SubItems[3].Text;
                 this.txtEnd.Text = selectedItem.SubItems[4].Text;
-                this.txtSize.Text=selectedItem.SubItems[5].Text;
+                this.txtSize.Text = selectedItem.SubItems[5].Text;
 
-                this.chkBold.Checked =selectedItem.SubItems[6].Text=="Bold";
-                
-                this.txtTitle.Text = selectedItem.SubItems[7].Text; 
+                this.chkBold.Checked = selectedItem.SubItems[6].Text == "Bold";
+
+                this.txtTitle.Text = selectedItem.SubItems[7].Text;
                 this.txtRow.Text = selectedItem.SubItems[8].Text;
                 this.txtColumn.Text = selectedItem.SubItems[9].Text;
                 this.myComboBox1.SelectedIndex = int.Parse(selectedItem.SubItems[10].Text);
                 this.txtWidth.Text = selectedItem.SubItems[11].Text;
-                
-                
+
             }
+            else
+                
+                        SetDefaultValue();
+            
         }
+
+        private void SetDefaultValue()
+        {
+            this.comPrtType.SelectedIndex = 0;
+            this.lblColor.BackColor = Color.Black;
+            this.txtStart.Text = "(5,5)";
+            this.txtEnd.Text = "(25,35)";
+            this.txtSize.Text = "12";
+
+            this.chkBold.Checked = true;
+
+            this.txtTitle.Text = "内容";
+            this.txtRow.Text = "3";
+            this.txtColumn.Text = "4";
+            this.myComboBox1.SelectedIndex = 0;
+            this.txtWidth.Text = "0.2";
+        }
+        // 微调函数，根据指定的微调量微调点的坐标
+        public PointF AdjustPoint(PointF point, float xAdjustment, float yAdjustment)
+        {
+            return new PointF(point.X + xAdjustment, point.Y + yAdjustment);
+        }
+        private void vScrollBar1_Scroll(object sender, ScrollEventArgs e)
+        {
+            System.Windows.Forms.ScrollBar scrollBar = (System.Windows.Forms.ScrollBar)sender;
+            if(this.lstContent.SelectedItems.Count>0)
+            {
+                string start = this.txtStart.Text;
+
+                PointF p = new PointF(int.Parse(start.Trim(new char[] { '(', ')' }).Split(',')[0]), int.Parse(start.Trim(new char[] { '(', ')' }).Split(',')[1]));
+
+                PointF padjust =new PointF(0,0);
+                 
+
+                if (scrollBar == vScrollBar1)
+                {
+                    padjust = AdjustPoint(p, 0, 1);
+                }
+                else if (scrollBar == hScrollBar1)
+                {
+                    padjust = AdjustPoint(p,  1,0);
+                }
+                string startAdjust = "(" + padjust.X.ToString() + "," + padjust.Y.ToString() + ")";
+                this.lstContent.SelectedItems[0].SubItems[3].Text = startAdjust;
+                this.txtStart.Text = startAdjust;
+
+                btnRefresh_Click(sender, e);
+            }
+
+        }  
+
+            //string start = this.txtStart.Text;
+
+            //PointF p = new PointF(int.Parse(start.Trim(new char[] { '(', ')' }).Split(',')[0]), int.Parse(start.Trim(new char[] { '(', ')' }).Split(',')[1]));
+
+            //PointF padjust = AdjustPoint(p, 0, e.NewValue);
+
+
+            //string startAdjust = "(" + padjust.X.ToString() + "," + padjust.Y.ToString() + ")";
+            //this.lstContent.SelectedItems[0].SubItems[3].Text = startAdjust;
+            //this.txtStart.Text = startAdjust;
+
+            //btnRefresh_Click(sender, e);
+        //}
+
+        //private void hScrollBar1_Scroll(object sender, ScrollEventArgs e)
+        //{
+        //    string start = this.txtStart.Text;
+
+        //    PointF p = new PointF(int.Parse(start.Trim(new char[] { '(', ')' }).Split(',')[0]), int.Parse(start.Trim(new char[] { '(', ')' }).Split(',')[1]));
+
+        //    PointF padjust = AdjustPoint(p, e.NewValue,0);
+
+
+
+        //    this.lstContent.SelectedItems[0].SubItems[3].Text = "(" + padjust.X.ToString() + "," + padjust.Y.ToString() + ")";
+
+        //    btnRefresh_Click(sender, e);
+        //}
     }
 }

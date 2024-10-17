@@ -81,6 +81,7 @@ namespace WindowsFormsApplication1
             this.txtWidth = new System.Windows.Forms.TextBox();
             this.comPrtType = new System.Windows.Forms.ComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.myComboBox1 = new WindowsFormsApplication1.myComboBox(this.components);
             this.lstContent = new System.Windows.Forms.ListView();
             this.label22 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
@@ -98,9 +99,10 @@ namespace WindowsFormsApplication1
             this.btnSaveTempData = new System.Windows.Forms.Button();
             this.btnModi = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
-            this.myComboBox1 = new WindowsFormsApplication1.myComboBox(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.vScrollBar1 = new System.Windows.Forms.VScrollBar();
+            this.hScrollBar1 = new System.Windows.Forms.HScrollBar();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -587,6 +589,16 @@ namespace WindowsFormsApplication1
             this.panel2.Size = new System.Drawing.Size(1190, 238);
             this.panel2.TabIndex = 20;
             // 
+            // myComboBox1
+            // 
+            this.myComboBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.myComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.myComboBox1.Location = new System.Drawing.Point(975, 46);
+            this.myComboBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.myComboBox1.Name = "myComboBox1";
+            this.myComboBox1.Size = new System.Drawing.Size(122, 29);
+            this.myComboBox1.TabIndex = 22;
+            // 
             // lstContent
             // 
             this.lstContent.HideSelection = false;
@@ -724,23 +736,13 @@ namespace WindowsFormsApplication1
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(396, 236);
+            this.btnClear.Location = new System.Drawing.Point(240, 285);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(70, 42);
             this.btnClear.TabIndex = 23;
             this.btnClear.Text = "清空";
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnCommand_Click);
-            // 
-            // myComboBox1
-            // 
-            this.myComboBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.myComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.myComboBox1.Location = new System.Drawing.Point(975, 46);
-            this.myComboBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.myComboBox1.Name = "myComboBox1";
-            this.myComboBox1.Size = new System.Drawing.Size(122, 29);
-            this.myComboBox1.TabIndex = 22;
             // 
             // statusStrip1
             // 
@@ -759,11 +761,29 @@ namespace WindowsFormsApplication1
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(206, 24);
             this.toolStripStatusLabel1.Text = "每个坐标点之间为0.5cm";
             // 
+            // vScrollBar1
+            // 
+            this.vScrollBar1.Location = new System.Drawing.Point(408, 281);
+            this.vScrollBar1.Name = "vScrollBar1";
+            this.vScrollBar1.Size = new System.Drawing.Size(22, 290);
+            this.vScrollBar1.TabIndex = 25;
+            this.vScrollBar1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.vScrollBar1_Scroll);
+            // 
+            // hScrollBar1
+            // 
+            this.hScrollBar1.Location = new System.Drawing.Point(450, 264);
+            this.hScrollBar1.Name = "hScrollBar1";
+            this.hScrollBar1.Size = new System.Drawing.Size(604, 26);
+            this.hScrollBar1.TabIndex = 26;
+            this.hScrollBar1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.vScrollBar1_Scroll);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1800, 1053);
+            this.Controls.Add(this.hScrollBar1);
+            this.Controls.Add(this.vScrollBar1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnModi);
@@ -914,6 +934,8 @@ namespace WindowsFormsApplication1
         private Button btnClear;
         private StatusStrip statusStrip1;
         private ToolStripStatusLabel toolStripStatusLabel1;
+        private VScrollBar vScrollBar1;
+        private HScrollBar hScrollBar1;
     }
 }
 
