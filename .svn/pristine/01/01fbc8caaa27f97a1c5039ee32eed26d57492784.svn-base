@@ -58,12 +58,6 @@
     <Compile Include="MainForm.designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Move.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Move.Designer.cs">
-      <DependentUpon>Move.cs</DependentUpon>
-    </Compile>
     <Compile Include="myComboBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -73,26 +67,11 @@
     <Compile Include="PrintHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UCBtnExt.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UCBtnExt.Designer.cs">
-      <DependentUpon>UCBtnExt.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UCControlBase.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UCControlBase.Designer.cs">
-      <DependentUpon>UCControlBase.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="ConnectionControl.resx">
       <DependentUpon>ConnectionControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Move.resx">
-      <DependentUpon>Move.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -103,12 +82,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="UCBtnExt.resx">
-      <DependentUpon>UCBtnExt.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UCControlBase.resx">
-      <DependentUpon>UCControlBase.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
