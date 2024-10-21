@@ -195,7 +195,7 @@ namespace WindowsFormsApplication1
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnPrint_Click(object sender, EventArgs e)
+        private void BtnPrint_Click(object sender, EventArgs e)
         {
             //打印对话框
             if (this.ptDControl.ShowDialog() == DialogResult.OK)
@@ -205,7 +205,7 @@ namespace WindowsFormsApplication1
 
         }
 
-        private void lblColor_Click(object sender, EventArgs e)
+        private void LblColor_Click(object sender, EventArgs e)
         {
             ColorDialog f = new ColorDialog();
             if (f.ShowDialog() == DialogResult.OK)
@@ -246,7 +246,7 @@ namespace WindowsFormsApplication1
             int gapX = int.Parse(this.txtGapX.Text);
             int gapY = int.Parse(this.txtGapY.Text);
 
-        
+           
             if (this.chkGrid.Checked)//网格
             {
 
@@ -254,7 +254,7 @@ namespace WindowsFormsApplication1
                 {
                     for (int j = 0; j <= axisLengthY; j += 5)
                     {
-                        Color c = new Color();
+                        Color c  ;
                         if (j % gapY == 0 || i % gapX == 0)
                             c = Color.Red;
                         else
@@ -308,16 +308,16 @@ namespace WindowsFormsApplication1
             {
                 int row = int.Parse(this.txtLabelRow.Text);
                 int col=int.Parse(this.txtLabelCol.Text);
-                string start = "";
-                string end = "";
+                string start  ;
+                string end ;
                 if(col>1)
                 {
                     int c = (width_p - 2 * margin_lr) / col;
                     for (int i = 1; i < col; i++)
                     {
                         
-                        start = "("+((i )*c+margin_lr).ToString()+","+ "0)";
-                        end = "(" + ((i ) * c + margin_lr) + "," + (height_p - margin_tb).ToString() + ")";
+                        start = "("+((i )*c).ToString()+","+ "0)";
+                        end = "(" + ((i ) * c ).ToString() + "," + (height_p -2*margin_tb).ToString() + ")";
                         PrintInfo p01 = new PrintInfo()
                         {
                             PrtType = PrintType.Line,
@@ -334,14 +334,48 @@ namespace WindowsFormsApplication1
                     }
 
                 }
+                if (row > 1)
+                {
+                    int c = (height_p - 2 * margin_tb) / row;
+                    for (int i = 1; i < row; i++)
+                    {
+
+                        start = "(0," + ((i) * c).ToString() + ")";
+                        end = "(" + (width_p - 2*margin_lr).ToString() + "," + ((i) * c).ToString() + ")";
+                        PrintInfo p01 = new PrintInfo()
+                        {
+                            PrtType = PrintType.Line,
+
+                            PrtColor = Color.Blue,
+                            Width = 0.1f,
+                            PrtDashStyle = DashStyle.Custom,
+
+                            Start = new PointF(this.margin_tb + scaleX * int.Parse(start.Trim(new char[] { '(', ')' }).Split(',')[0]), this.margin_lr + scaleY * int.Parse(start.Trim(new char[] { '(', ')' }).Split(',')[1])),
+                            End = new PointF(this.margin_tb + scaleX * int.Parse(end.Trim(new char[] { '(', ')' }).Split(',')[0]), this.margin_lr + scaleY * int.Parse(end.Trim(new char[] { '(', ')' }).Split(',')[1]))
+
+                        };
+                        lstPrintInfos.Add(p01);
+                    }
+                }
 
             }
             //打印模板
-            
+
+
+            if (this.ucCheck1.Checked)
+            {
+                int row = int.Parse(this.txtLabelRow.Text);
+                int col = int.Parse(this.txtLabelCol.Text);
+
+                if (lstContent.Items.Count > 0 && (row > 1 || col > 1))
+                {
+
+                }
+            }
 
             foreach (ListViewItem lvi in this.lstContent.Items)
             {
-                PrintInfo plvi = new PrintInfo();
+                 
                 string type = lvi.SubItems[1].Text;
                 string color = lvi.SubItems[2].Text;
                 string start = lvi.SubItems[3].Text;
@@ -419,10 +453,10 @@ namespace WindowsFormsApplication1
             this.ppVControl.InvalidatePreview();//刷新文档的预览，重新调用PrintDocument的Print方法
         }
 
-        private void btnCommand_Click(object sender, EventArgs e)
+        private void BtnCommand_Click(object sender, EventArgs e)
         {
             System.Windows.Forms.Button button = sender as System.Windows.Forms.Button;
-            ListViewItem lvi = null;
+            ListViewItem lvi  ;
             switch (button.Text)
             {
                 case "添加":
@@ -581,6 +615,13 @@ namespace WindowsFormsApplication1
                 case "清空":
                     lstContent.Items.Clear();
                     break;
+                case "更新标签":
+                    foreach (ListViewItem lv in this.lstContent.Items)
+                    {
+
+                    }
+
+                        break;
             
             }  
            
@@ -646,7 +687,7 @@ namespace WindowsFormsApplication1
             this.txtSize.Enabled = true;
         }
 
-        private void lstContent_SelectedIndexChanged(object sender, EventArgs e)
+        private void LstContent_SelectedIndexChanged(object sender, EventArgs e)
         {
             SetEnabled();
 
@@ -830,13 +871,13 @@ namespace WindowsFormsApplication1
                     switch (type)
                     {
                         case "文本":
-                            startAdjust = Move(pstart, flagUD, flagLR);
+                            startAdjust = MoveLocation(pstart, flagUD, flagLR);
                             item.SubItems[3].Text = startAdjust;
                             this.txtStart.Text = startAdjust;
                             break;
                         case "点":
                              
-                            startAdjust = Move(pstart,flagUD, flagLR);
+                            startAdjust = MoveLocation(pstart,flagUD, flagLR);
                             item.SubItems[3].Text = startAdjust;
                             this.txtStart.Text = startAdjust;
                             break;
@@ -844,8 +885,8 @@ namespace WindowsFormsApplication1
                         case "表格":
                               pend = new PointF(int.Parse(end.Trim(new char[] { '(', ')' }).Split(',')[0]), int.Parse(end.Trim(new char[] { '(', ')' }).Split(',')[1]));
 
-                            startAdjust = Move(pstart, flagUD, flagLR);
-                            endAdjust =  Move(pend, flagUD, flagLR);
+                            startAdjust = MoveLocation(pstart, flagUD, flagLR);
+                            endAdjust = MoveLocation(pend, flagUD, flagLR);
 
                             item.SubItems[3].Text = startAdjust;
                             this.txtStart.Text = startAdjust;
@@ -858,8 +899,8 @@ namespace WindowsFormsApplication1
                         case "直线":
                               pend = new PointF(int.Parse(end.Trim(new char[] { '(', ')' }).Split(',')[0]), int.Parse(end.Trim(new char[] { '(', ')' }).Split(',')[1]));
 
-                            startAdjust = Move(pstart, flagUD, flagLR);
-                            endAdjust = Move(pend, flagUD, flagLR);
+                            startAdjust = MoveLocation(pstart, flagUD, flagLR);
+                            endAdjust = MoveLocation(pend, flagUD, flagLR);
 
                             item.SubItems[3].Text = startAdjust;
                             this.txtStart.Text = startAdjust;
@@ -877,7 +918,7 @@ namespace WindowsFormsApplication1
             }
         }
 
-        private string Move(PointF pstart,int flagUD, int flagLR )
+        private string MoveLocation(PointF pstart,int flagUD, int flagLR )
         {
             PointF padjust = AdjustPoint(pstart, flagLR, flagUD);
             string startAdjust = "(" + padjust.X.ToString() + "," + padjust.Y.ToString() + ")";
@@ -888,36 +929,7 @@ namespace WindowsFormsApplication1
             PointF padjust = AdjustPoint(pstart, flagLR, flagUD);
             string startAdjust = "(" + padjust.X.ToString() + "," + padjust.Y.ToString() + ")";
             return startAdjust;
-        }
-
-
-        //string start = this.txtStart.Text;
-
-        //PointF p = new PointF(int.Parse(start.Trim(new char[] { '(', ')' }).Split(',')[0]), int.Parse(start.Trim(new char[] { '(', ')' }).Split(',')[1]));
-
-        //PointF padjust = AdjustPoint(p, 0, e.NewValue);
-
-
-        //string startAdjust = "(" + padjust.X.ToString() + "," + padjust.Y.ToString() + ")";
-        //this.lstContent.SelectedItems[0].SubItems[3].Text = startAdjust;
-        //this.txtStart.Text = startAdjust;
-
-        //btnRefresh_Click(sender, e);
-        //}
-
-        //private void hScrollBar1_Scroll(object sender, ScrollEventArgs e)
-        //{
-        //    string start = this.txtStart.Text;
-
-        //    PointF p = new PointF(int.Parse(start.Trim(new char[] { '(', ')' }).Split(',')[0]), int.Parse(start.Trim(new char[] { '(', ')' }).Split(',')[1]));
-
-        //    PointF padjust = AdjustPoint(p, e.NewValue,0);
-
-
-
-        //    this.lstContent.SelectedItems[0].SubItems[3].Text = "(" + padjust.X.ToString() + "," + padjust.Y.ToString() + ")";
-
-        //    btnRefresh_Click(sender, e);
-        //}
+        }　
+     　
     }
 }

@@ -46,12 +46,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConnectionControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ConnectionControl.Designer.cs">
-      <DependentUpon>ConnectionControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -79,15 +73,18 @@
     <Compile Include="UCBtnExt.Designer.cs">
       <DependentUpon>UCBtnExt.cs</DependentUpon>
     </Compile>
+    <Compile Include="UCCheck.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCCheck.Designer.cs">
+      <DependentUpon>UCCheck.cs</DependentUpon>
+    </Compile>
     <Compile Include="UCControlBase.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UCControlBase.Designer.cs">
       <DependentUpon>UCControlBase.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="ConnectionControl.resx">
-      <DependentUpon>ConnectionControl.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -102,9 +99,13 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="UCBtnExt.resx">
       <DependentUpon>UCBtnExt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCCheck.resx">
+      <DependentUpon>UCCheck.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UCControlBase.resx">
       <DependentUpon>UCControlBase.cs</DependentUpon>
@@ -118,6 +119,13 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="off.png" />
+    <Content Include="on.png" />
+    <None Include="Resources\checkon.bmp" />
+    <Content Include="Resources\off.png" />
+    <Content Include="Resources\on.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

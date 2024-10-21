@@ -1,0 +1,11 @@
+D:\cs4\PrintTools2\myControl\obj\Debug\net8.0\WindowsFormsApplication1.UCBtnExt.resources
+D:\cs4\PrintTools2\myControl\obj\Debug\net8.0\WindowsFormsApplication1.UCCheck.resources
+D:\cs4\PrintTools2\myControl\obj\Debug\net8.0\WindowsFormsApplication1.UCControlBase.resources
+D:\cs4\PrintTools2\myControl\obj\Debug\net8.0\myControl.csproj.GenerateResource.cache
+D:\cs4\PrintTools2\myControl\obj\Debug\net8.0\myControl.GeneratedMSBuildEditorConfig.editorconfig
+D:\cs4\PrintTools2\myControl\obj\Debug\net8.0\myControl.AssemblyInfoInputs.cache
+D:\cs4\PrintTools2\myControl\obj\Debug\net8.0\myControl.AssemblyInfo.cs
+D:\cs4\PrintTools2\myControl\obj\Debug\net8.0\myControl.csproj.CoreCompileInputs.cache
+D:\cs4\PrintTools2\myControl\obj\Debug\net8.0\Interop.ActiveDs.dll
+D:\cs4\PrintTools2\myControl\obj\Debug\net8.0\myControl.csproj.ResolveComReference.cache
+D:\cs4\PrintTools2\myControl\obj\Debug\net8.0\WindowsFormsApplication1.ConnectionControl.resources
