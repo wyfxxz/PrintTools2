@@ -3,16 +3,24 @@
   "WorkspaceRootPath": "D:\\cs4\\PrintTools2\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{6026F3C3-9F3F-4543-9CC6-5131BD9ACAC8}|WindowsFormsApplication1\\PrintTools.csproj|D:\\cs4\\PrintTools2\\windowsformsapplication1\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{6026F3C3-9F3F-4543-9CC6-5131BD9ACAC8}|WindowsFormsApplication1\\PrintTools.csproj|d:\\cs4\\printtools2\\windowsformsapplication1\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6026F3C3-9F3F-4543-9CC6-5131BD9ACAC8}|WindowsFormsApplication1\\PrintTools.csproj|solutionrelative:windowsformsapplication1\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6026F3C3-9F3F-4543-9CC6-5131BD9ACAC8}|WindowsFormsApplication1\\PrintTools.csproj|D:\\cs4\\PrintTools2\\windowsformsapplication1\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{6026F3C3-9F3F-4543-9CC6-5131BD9ACAC8}|WindowsFormsApplication1\\PrintTools.csproj|solutionrelative:windowsformsapplication1\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6026F3C3-9F3F-4543-9CC6-5131BD9ACAC8}|WindowsFormsApplication1\\PrintTools.csproj|d:\\cs4\\printtools2\\windowsformsapplication1\\mycombobox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6026F3C3-9F3F-4543-9CC6-5131BD9ACAC8}|WindowsFormsApplication1\\PrintTools.csproj|solutionrelative:windowsformsapplication1\\mycombobox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6026F3C3-9F3F-4543-9CC6-5131BD9ACAC8}|WindowsFormsApplication1\\PrintTools.csproj|D:\\cs4\\PrintTools2\\windowsformsapplication1\\printhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6026F3C3-9F3F-4543-9CC6-5131BD9ACAC8}|WindowsFormsApplication1\\PrintTools.csproj|solutionrelative:windowsformsapplication1\\printhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6026F3C3-9F3F-4543-9CC6-5131BD9ACAC8}|WindowsFormsApplication1\\PrintTools.csproj|d:\\cs4\\printtools2\\windowsformsapplication1\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{6026F3C3-9F3F-4543-9CC6-5131BD9ACAC8}|WindowsFormsApplication1\\PrintTools.csproj|solutionrelative:windowsformsapplication1\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{6026F3C3-9F3F-4543-9CC6-5131BD9ACAC8}|WindowsFormsApplication1\\PrintTools.csproj|d:\\cs4\\printtools2\\windowsformsapplication1\\mycombobox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{6026F3C3-9F3F-4543-9CC6-5131BD9ACAC8}|WindowsFormsApplication1\\PrintTools.csproj|solutionrelative:windowsformsapplication1\\mycombobox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -32,7 +40,7 @@
               "RelativeDocumentMoniker": "WindowsFormsApplication1\\MainForm.cs",
               "ToolTip": "D:\\cs4\\PrintTools2\\WindowsFormsApplication1\\MainForm.cs",
               "RelativeToolTip": "WindowsFormsApplication1\\MainForm.cs",
-              "ViewState": "AgIAACwBAAAAAAAAAAAtwHwBAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAADMBAAAAAAAAAAAAADkBAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-15T01:00:50.53Z",
               "IsPinned": true,
@@ -76,20 +84,32 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "PrintHelper.cs",
-              "DocumentMoniker": "D:\\cs4\\PrintTools2\\WindowsFormsApplication1\\PrintHelper.cs",
-              "RelativeDocumentMoniker": "WindowsFormsApplication1\\PrintHelper.cs",
-              "ToolTip": "D:\\cs4\\PrintTools2\\WindowsFormsApplication1\\PrintHelper.cs",
-              "RelativeToolTip": "WindowsFormsApplication1\\PrintHelper.cs",
-              "ViewState": "AgIAAD0AAAAAAAAAAAAowC0AAABNAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "myComboBox.cs",
+              "DocumentMoniker": "D:\\cs4\\PrintTools2\\WindowsFormsApplication1\\myComboBox.cs",
+              "RelativeDocumentMoniker": "WindowsFormsApplication1\\myComboBox.cs",
+              "ToolTip": "D:\\cs4\\PrintTools2\\WindowsFormsApplication1\\myComboBox.cs",
+              "RelativeToolTip": "WindowsFormsApplication1\\myComboBox.cs",
+              "ViewState": "AgIAAEEAAAAAAAAAAAAAAFAAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-15T14:09:31.306Z",
+              "WhenOpened": "2024-10-21T02:23:21.108Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
+              "Title": "myComboBox.cs [\u8BBE\u8BA1]",
+              "DocumentMoniker": "D:\\cs4\\PrintTools2\\WindowsFormsApplication1\\myComboBox.cs",
+              "RelativeDocumentMoniker": "WindowsFormsApplication1\\myComboBox.cs",
+              "ToolTip": "D:\\cs4\\PrintTools2\\WindowsFormsApplication1\\myComboBox.cs [\u8BBE\u8BA1]",
+              "RelativeToolTip": "WindowsFormsApplication1\\myComboBox.cs [\u8BBE\u8BA1]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-21T02:23:19.011Z",
+              "EditorCaption": " [\u8BBE\u8BA1]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "MainForm.cs [\u8BBE\u8BA1]",
               "DocumentMoniker": "D:\\cs4\\PrintTools2\\WindowsFormsApplication1\\MainForm.cs",
               "RelativeDocumentMoniker": "WindowsFormsApplication1\\MainForm.cs",
@@ -98,6 +118,19 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-15T01:00:48.808Z",
               "EditorCaption": " [\u8BBE\u8BA1]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "PrintHelper.cs",
+              "DocumentMoniker": "D:\\cs4\\PrintTools2\\WindowsFormsApplication1\\PrintHelper.cs",
+              "RelativeDocumentMoniker": "WindowsFormsApplication1\\PrintHelper.cs",
+              "ToolTip": "D:\\cs4\\PrintTools2\\WindowsFormsApplication1\\PrintHelper.cs",
+              "RelativeToolTip": "WindowsFormsApplication1\\PrintHelper.cs",
+              "ViewState": "AgIAACUAAAAAAAAAAAAowDYAAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-15T14:09:31.306Z",
+              "EditorCaption": ""
             }
           ]
         }

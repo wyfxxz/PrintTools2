@@ -50,6 +50,12 @@ namespace Model
                         case PrintType.Line:
                             Pen lineColor1 = new Pen(p.PrtColor, p.Width);
                             lineColor1.DashStyle = p.PrtDashStyle;
+                            if (p.PrtDashStyle == DashStyle.Custom)
+                            {
+                                lineColor1.DashStyle = DashStyle.Dot;
+                                lineColor1.DashPattern = new float[] { 10, 10 };
+                            }
+                            
                             g.DrawLine(lineColor1, new PointF(p.Start.X, p.Start.Y), new PointF(p.End.X, p.End.Y));
                             break;
                         case PrintType.Table:

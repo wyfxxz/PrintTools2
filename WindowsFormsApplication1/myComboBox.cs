@@ -73,6 +73,12 @@ namespace WindowsFormsApplication1
                         pen.DashStyle = DashStyle.DashDotDot;
 
                         break;
+                    case (int)DashStyle.Custom:
+                        pen=new Pen(Color.Black,1);
+                        pen.DashStyle = DashStyle.Dot;
+                        pen.DashPattern = new float[] { 10, 10 };
+
+                        break;
 
                 }
                 e.Graphics.DrawLine(pen,new PointF(x,y),new PointF(8*x,y));

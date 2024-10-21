@@ -63,6 +63,7 @@ namespace WindowsFormsApplication1
             this.myComboBox1.Items.Add(2);
             this.myComboBox1.Items.Add(3);
             this.myComboBox1.Items.Add(4);
+            this.myComboBox1.Items.Add(5);
             this.myComboBox1.SelectedIndex = 0;
 
             this.comPrtType.Items.Add("文本");
@@ -71,6 +72,11 @@ namespace WindowsFormsApplication1
             this.comPrtType.Items.Add("点");
 
             this.comPrtType.SelectedIndex = 0;
+
+            this.btnUp.Text = "\u2191";
+            this.btnDown.Text = "\u2193";
+            this.btnLeft.Text = " \u2190";
+            this.btnRight.Text = "\u2192";
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -298,8 +304,40 @@ namespace WindowsFormsApplication1
                     lstPrintInfos.Add(p01);
                 }
             }
-            //打印模板
+            if (chkColumns.Checked == true)
+            {
+                int row = int.Parse(this.txtLabelRow.Text);
+                int col=int.Parse(this.txtLabelCol.Text);
+                string start = "";
+                string end = "";
+                if(col>1)
+                {
+                    int c = (width_p - 2 * margin_lr) / col;
+                    for (int i = 1; i < col; i++)
+                    {
+                        
+                        start = "("+((i )*c+margin_lr).ToString()+","+ "0)";
+                        end = "(" + ((i ) * c + margin_lr) + "," + (height_p - margin_tb).ToString() + ")";
+                        PrintInfo p01 = new PrintInfo()
+                        {
+                            PrtType = PrintType.Line,
 
+                            PrtColor = Color.Blue,
+                            Width = 0.1f,
+                            PrtDashStyle = DashStyle.Custom,
+
+                            Start = new PointF(this.margin_tb + scaleX * int.Parse(start.Trim(new char[] { '(', ')' }).Split(',')[0]), this.margin_lr + scaleY * int.Parse(start.Trim(new char[] { '(', ')' }).Split(',')[1])),
+                            End = new PointF(this.margin_tb + scaleX * int.Parse(end.Trim(new char[] { '(', ')' }).Split(',')[0]), this.margin_lr + scaleY * int.Parse(end.Trim(new char[] { '(', ')' }).Split(',')[1]))
+
+                        };
+                        lstPrintInfos.Add(p01);
+                    }
+
+                }
+
+            }
+            //打印模板
+            
 
             foreach (ListViewItem lvi in this.lstContent.Items)
             {
@@ -443,12 +481,12 @@ namespace WindowsFormsApplication1
                 case "导入模板":
                     openFileDialog1.Title = "选择需要打开的目标";
                     openFileDialog1.Filter = "Txt(*.txt)|*.txt";
-                    this.lstContent.Items.Clear();
+                    
                     if (this.openFileDialog1.ShowDialog() == DialogResult.OK)
                     {
                         StreamReader sr = null;
                         string fileName = openFileDialog1.FileName;
-
+                        this.lstContent.Items.Clear();
                         try
                         {
                             sr = new StreamReader(fileName);
@@ -753,20 +791,118 @@ namespace WindowsFormsApplication1
         {
             Button button = sender as Button;
             
-        }  
+        }
 
-            //string start = this.txtStart.Text;
+        private void btn_MoveClick(object sender, EventArgs e)
+        {
+            Button btn = sender as Button;
+            int flagUD = 0, flagLR=0;
+            if (btn == null) return;
+            if(btn==btnUp) flagUD = -1;
+            else if(btn==btnDown) flagUD = +1;
+            else if(btn==btnLeft) flagLR = -1; 
+            else if(btn==btnRight) flagLR = +1;    
+             
 
-            //PointF p = new PointF(int.Parse(start.Trim(new char[] { '(', ')' }).Split(',')[0]), int.Parse(start.Trim(new char[] { '(', ')' }).Split(',')[1]));
+            if (lstContent.SelectedItems.Count > 0)
+            {
+                foreach (ListViewItem item in lstContent.SelectedItems)
+                {
+                    ListViewItem selectedItem = item;
+                    string type = selectedItem.SubItems[1].Text;
+                    //string color = selectedItem.SubItems[2].Text;
+                    string start = selectedItem.SubItems[3].Text;
+                    string end = selectedItem.SubItems[4].Text;
+                    //int size = int.Parse(selectedItem.SubItems[5].Text);
+                    //string fontstyle = selectedItem.SubItems[6].Text;
+                    //string content = selectedItem.SubItems[7].Text;
+                    //int row = int.Parse(selectedItem.SubItems[8].Text);
+                    //int col = int.Parse(selectedItem.SubItems[9].Text);
+                    //int dashstyle = int.Parse(selectedItem.SubItems[10].Text);
+                    //float width = float.Parse(selectedItem.SubItems[11].Text);
+                    PointF pstart = new PointF(int.Parse(start.Trim(new char[] { '(', ')' }).Split(',')[0]), int.Parse(start.Trim(new char[] { '(', ')' }).Split(',')[1]));
+                    
+                    PointF padjust = new PointF(0, 0);
+                    PointF pend;
+                    string startAdjust = "";
+                    string endAdjust = "";
 
-            //PointF padjust = AdjustPoint(p, 0, e.NewValue);
+                    switch (type)
+                    {
+                        case "文本":
+                            startAdjust = Move(pstart, flagUD, flagLR);
+                            item.SubItems[3].Text = startAdjust;
+                            this.txtStart.Text = startAdjust;
+                            break;
+                        case "点":
+                             
+                            startAdjust = Move(pstart,flagUD, flagLR);
+                            item.SubItems[3].Text = startAdjust;
+                            this.txtStart.Text = startAdjust;
+                            break;
+
+                        case "表格":
+                              pend = new PointF(int.Parse(end.Trim(new char[] { '(', ')' }).Split(',')[0]), int.Parse(end.Trim(new char[] { '(', ')' }).Split(',')[1]));
+
+                            startAdjust = Move(pstart, flagUD, flagLR);
+                            endAdjust =  Move(pend, flagUD, flagLR);
+
+                            item.SubItems[3].Text = startAdjust;
+                            this.txtStart.Text = startAdjust;
+
+                            item.SubItems[4].Text= endAdjust; 
+                            this.txtEnd.Text = endAdjust;
+
+                            break;
+
+                        case "直线":
+                              pend = new PointF(int.Parse(end.Trim(new char[] { '(', ')' }).Split(',')[0]), int.Parse(end.Trim(new char[] { '(', ')' }).Split(',')[1]));
+
+                            startAdjust = Move(pstart, flagUD, flagLR);
+                            endAdjust = Move(pend, flagUD, flagLR);
+
+                            item.SubItems[3].Text = startAdjust;
+                            this.txtStart.Text = startAdjust;
+
+                            item.SubItems[4].Text = endAdjust;
+                            this.txtEnd.Text = endAdjust;
+
+                            break;  
+
+                    }
+                    
+
+                    btnRefresh_Click(sender, e);
+                }
+            }
+        }
+
+        private string Move(PointF pstart,int flagUD, int flagLR )
+        {
+            PointF padjust = AdjustPoint(pstart, flagLR, flagUD);
+            string startAdjust = "(" + padjust.X.ToString() + "," + padjust.Y.ToString() + ")";
+            return startAdjust;
+        }
+        private string MoveTable(PointF pstart, PointF pend, int flagUD, int flagLR)
+        {
+            PointF padjust = AdjustPoint(pstart, flagLR, flagUD);
+            string startAdjust = "(" + padjust.X.ToString() + "," + padjust.Y.ToString() + ")";
+            return startAdjust;
+        }
 
 
-            //string startAdjust = "(" + padjust.X.ToString() + "," + padjust.Y.ToString() + ")";
-            //this.lstContent.SelectedItems[0].SubItems[3].Text = startAdjust;
-            //this.txtStart.Text = startAdjust;
+        //string start = this.txtStart.Text;
 
-            //btnRefresh_Click(sender, e);
+        //PointF p = new PointF(int.Parse(start.Trim(new char[] { '(', ')' }).Split(',')[0]), int.Parse(start.Trim(new char[] { '(', ')' }).Split(',')[1]));
+
+        //PointF padjust = AdjustPoint(p, 0, e.NewValue);
+
+
+        //string startAdjust = "(" + padjust.X.ToString() + "," + padjust.Y.ToString() + ")";
+        //this.lstContent.SelectedItems[0].SubItems[3].Text = startAdjust;
+        //this.txtStart.Text = startAdjust;
+
+        //btnRefresh_Click(sender, e);
         //}
 
         //private void hScrollBar1_Scroll(object sender, ScrollEventArgs e)
