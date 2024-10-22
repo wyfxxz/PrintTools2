@@ -9,6 +9,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{6026F3C3-9F3F-4543-9CC6-5131BD9ACAC8}|WindowsFormsApplication1\\PrintTools.csproj|D:\\cs4\\PrintTools2\\windowsformsapplication1\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6026F3C3-9F3F-4543-9CC6-5131BD9ACAC8}|WindowsFormsApplication1\\PrintTools.csproj|solutionrelative:windowsformsapplication1\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6026F3C3-9F3F-4543-9CC6-5131BD9ACAC8}|WindowsFormsApplication1\\PrintTools.csproj|d:\\cs4\\printtools2\\windowsformsapplication1\\printhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6026F3C3-9F3F-4543-9CC6-5131BD9ACAC8}|WindowsFormsApplication1\\PrintTools.csproj|solutionrelative:windowsformsapplication1\\printhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 10,
+          "SelectedChildIndex": 11,
           "Children": [
             {
               "$type": "Document",
@@ -28,7 +32,7 @@
               "RelativeDocumentMoniker": "WindowsFormsApplication1\\MainForm.cs",
               "ToolTip": "D:\\cs4\\PrintTools2\\WindowsFormsApplication1\\MainForm.cs",
               "RelativeToolTip": "WindowsFormsApplication1\\MainForm.cs",
-              "ViewState": "AgIAAJ4DAAAAAAAAAAAAAKYDAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAKYBAAAAAAAAAAAgwFoBAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-15T01:00:50.53Z",
               "IsPinned": true,
@@ -69,6 +73,19 @@
             {
               "$type": "Bookmark",
               "Name": "ST:135:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PrintHelper.cs",
+              "DocumentMoniker": "D:\\cs4\\PrintTools2\\WindowsFormsApplication1\\PrintHelper.cs",
+              "RelativeDocumentMoniker": "WindowsFormsApplication1\\PrintHelper.cs",
+              "ToolTip": "D:\\cs4\\PrintTools2\\WindowsFormsApplication1\\PrintHelper.cs",
+              "RelativeToolTip": "WindowsFormsApplication1\\PrintHelper.cs",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-22T02:05:01.682Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",

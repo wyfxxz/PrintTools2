@@ -243,8 +243,8 @@ namespace WindowsFormsApplication1
             int axisLengthY = int.Parse(this.txtaxisLengthY.Text); // 坐标轴长�?
             float scaleX = (width_p - 2 * margin_tb) * 1.0f / axisLengthX; // 每个单位 像素
             float scaleY = (height_p - 2 * margin_lr) * 1.0f / axisLengthY; // 每个单位 像素
-            int gapX = int.Parse(this.txtGapX.Text);
-            int gapY = int.Parse(this.txtGapY.Text);
+            float gapX = float.Parse(this.txtGapX.Text);
+            float gapY = float.Parse(this.txtGapY.Text);
 
            
             if (this.chkGrid.Checked)//网格
@@ -277,7 +277,7 @@ namespace WindowsFormsApplication1
             if (this.chkPoint.Checked)
             {
 
-                for (int i = 0; i <= axisLengthX; i += gapX)
+                for (float i = 0; i <= axisLengthX; i += gapX)
                 {
                     PrintInfo p01 = new PrintInfo()
                     {
@@ -290,7 +290,7 @@ namespace WindowsFormsApplication1
                     };
                     lstPrintInfos.Add(p01);
                 }
-                for (int j = 0; j <= axisLengthY; j += gapY)
+                for (float j = 0; j <= axisLengthY; j += gapY)
                 {
                     PrintInfo p01 = new PrintInfo()
                     {
@@ -312,7 +312,7 @@ namespace WindowsFormsApplication1
                 string end ;
                 if(col>1)
                 {
-                    int c = (width_p - 2 * margin_lr) / col;
+                    float c = ((width_p - 2 * margin_lr)*1.0f) / col;
                     for (int i = 1; i < col; i++)
                     {
                         
@@ -326,8 +326,8 @@ namespace WindowsFormsApplication1
                             Width = 0.1f,
                             PrtDashStyle = DashStyle.Custom,
 
-                            Start = new PointF(this.margin_tb + scaleX * int.Parse(start.Trim(new char[] { '(', ')' }).Split(',')[0]), this.margin_lr + scaleY * int.Parse(start.Trim(new char[] { '(', ')' }).Split(',')[1])),
-                            End = new PointF(this.margin_tb + scaleX * int.Parse(end.Trim(new char[] { '(', ')' }).Split(',')[0]), this.margin_lr + scaleY * int.Parse(end.Trim(new char[] { '(', ')' }).Split(',')[1]))
+                            Start = new PointF(this.margin_tb + scaleX * float.Parse(start.Trim(new char[] { '(', ')' }).Split(',')[0]), this.margin_lr + scaleY * float.Parse(start.Trim(new char[] { '(', ')' }).Split(',')[1])),
+                            End = new PointF(this.margin_tb + scaleX * float.Parse(end.Trim(new char[] { '(', ')' }).Split(',')[0]), this.margin_lr + scaleY * float.Parse(end.Trim(new char[] { '(', ')' }).Split(',')[1]))
 
                         };
                         lstPrintInfos.Add(p01);
@@ -336,7 +336,7 @@ namespace WindowsFormsApplication1
                 }
                 if (row > 1)
                 {
-                    int c = (height_p - 2 * margin_tb) / row;
+                    float c = (height_p - 2 * margin_tb)*1.0f / row;
                     for (int i = 1; i < row; i++)
                     {
 
@@ -350,8 +350,8 @@ namespace WindowsFormsApplication1
                             Width = 0.1f,
                             PrtDashStyle = DashStyle.Custom,
 
-                            Start = new PointF(this.margin_tb + scaleX * int.Parse(start.Trim(new char[] { '(', ')' }).Split(',')[0]), this.margin_lr + scaleY * int.Parse(start.Trim(new char[] { '(', ')' }).Split(',')[1])),
-                            End = new PointF(this.margin_tb + scaleX * int.Parse(end.Trim(new char[] { '(', ')' }).Split(',')[0]), this.margin_lr + scaleY * int.Parse(end.Trim(new char[] { '(', ')' }).Split(',')[1]))
+                            Start = new PointF(this.margin_tb + scaleX * float.Parse(start.Trim(new char[] { '(', ')' }).Split(',')[0]), this.margin_lr + scaleY * float.Parse(start.Trim(new char[] { '(', ')' }).Split(',')[1])),
+                            End = new PointF(this.margin_tb + scaleX * float.Parse(end.Trim(new char[] { '(', ')' }).Split(',')[0]), this.margin_lr + scaleY * float.Parse(end.Trim(new char[] { '(', ')' }).Split(',')[1]))
 
                         };
                         lstPrintInfos.Add(p01);
@@ -361,89 +361,96 @@ namespace WindowsFormsApplication1
             }
             //打印模板
 
-
-            if (this.ucCheck1.Checked)
+            int Labelrow=1, Labelcol=1;
+            float rowGap=0f, colGap=0f;
+            if (this.ucCheck1.Checked == true)
             {
-                int row = int.Parse(this.txtLabelRow.Text);
-                int col = int.Parse(this.txtLabelCol.Text);
-
-                if (lstContent.Items.Count > 0 && (row > 1 || col > 1))
-                {
-
-                }
+                  Labelrow = int.Parse(this.txtLabelRow.Text);
+                  Labelcol = int.Parse(this.txtLabelCol.Text);
+                  rowGap  = ((height_p - 2 * margin_tb)*1.0f) / Labelrow;
+                  colGap = ((width_p - 2 * margin_lr) *1.0f)/ Labelcol;
             }
+            
+           
 
-            foreach (ListViewItem lvi in this.lstContent.Items)
+           for(int i=0; i< Labelrow; i++)
             {
+                for(int j=0; j< Labelcol; j++)
+                {
+                    foreach (ListViewItem lvi in this.lstContent.Items)
+                            {
                  
-                string type = lvi.SubItems[1].Text;
-                string color = lvi.SubItems[2].Text;
-                string start = lvi.SubItems[3].Text;
-                string end = lvi.SubItems[4].Text;
-                int size = int.Parse(lvi.SubItems[5].Text);
-                string fontstyle = lvi.SubItems[6].Text;
-                string content = lvi.SubItems[7].Text;
-                int row = int.Parse(lvi.SubItems[8].Text);
-                int col = int.Parse(lvi.SubItems[9].Text);
-                int dashstyle = int.Parse(lvi.SubItems[10].Text);
-                float width = float.Parse(lvi.SubItems[11].Text);
+                                string type = lvi.SubItems[1].Text;
+                                string color = lvi.SubItems[2].Text;
+                                string start = lvi.SubItems[3].Text;
+                                string end = lvi.SubItems[4].Text;
+                                int size = int.Parse(lvi.SubItems[5].Text);
+                                string fontstyle = lvi.SubItems[6].Text;
+                                string content = lvi.SubItems[7].Text;
+                                int row = int.Parse(lvi.SubItems[8].Text);
+                                int col = int.Parse(lvi.SubItems[9].Text);
+                                int dashstyle = int.Parse(lvi.SubItems[10].Text);
+                                float width = float.Parse(lvi.SubItems[11].Text);
 
-                if (type.Contains("文本"))
-                {
-                    PrintInfo p = new PrintInfo()
-                    {
-                        PrtType = PrintType.Text,
-                        PrtColor = ColorTranslator.FromHtml(color),
-                        Content = content,
-                        Size = size,
-                        FontStyle = (FontStyle)Enum.Parse(typeof(FontStyle), fontstyle),
-                        Start = new PointF(this.margin_tb + scaleX * int.Parse(start.Trim(new char[] { '(', ')' }).Split(',')[0]), this.margin_lr + scaleY * int.Parse(start.Trim(new char[] { '(', ')' }).Split(',')[1]))
-                    }; //margin_tb + i * scaleX  ,margin_lr + j * scaleY
-                    lstPrintInfos.Add(p);
-                }
-                else if (type.Contains("表格"))
-                {
-                    PrintInfo p0 = new PrintInfo()
-                    {
-                        PrtType = PrintType.Table,
-                        PrtColor = ColorTranslator.FromHtml(color),
-                        Width = width,
-                        PrtDashStyle = (DashStyle)(dashstyle),
-                        Row = row,
-                        Column = col,
-                        Start = new PointF(this.margin_tb + scaleX * int.Parse(start.Trim(new char[] { '(', ')' }).Split(',')[0]), this.margin_lr + scaleY * int.Parse(start.Trim(new char[] { '(', ')' }).Split(',')[1])),
-                        End = new PointF(this.margin_tb + scaleX * int.Parse(end.Trim(new char[] { '(', ')' }).Split(',')[0]), this.margin_lr + scaleY * int.Parse(end.Trim(new char[] { '(', ')' }).Split(',')[1]))
-                    };
-                    lstPrintInfos.Add(p0);
-                }
-                else if (type.Contains("直线"))
-                {
-                    PrintInfo p1 = new PrintInfo()
-                    {
-                        PrtType = PrintType.Line,
-                        PrtColor = ColorTranslator.FromHtml(color),
-                        Width = width,
-                        PrtDashStyle = (DashStyle)(dashstyle),
+                                if (type.Contains("文本"))
+                                {
+                                    PrintInfo p = new PrintInfo()
+                                    {
+                                        PrtType = PrintType.Text,
+                                        PrtColor = ColorTranslator.FromHtml(color),
+                                        Content = content,
+                                        Size = size,
+                                        FontStyle = (FontStyle)Enum.Parse(typeof(FontStyle), fontstyle),
+                                        Start = GetParsePoint(scaleX, scaleY, start,i,j, rowGap, colGap)
+                                    }; //margin_tb + i * scaleX  ,margin_lr + j * scaleY
+                                    lstPrintInfos.Add(p);
+                                }
+                                else if (type.Contains("表格"))
+                                {
+                                    PrintInfo p0 = new PrintInfo()
+                                    {
+                                        PrtType = PrintType.Table,
+                                        PrtColor = ColorTranslator.FromHtml(color),
+                                        Width = width,
+                                        PrtDashStyle = (DashStyle)(dashstyle),
+                                        Row = row,
+                                        Column = col,
+                                        Start = GetParsePoint(scaleX, scaleY, start, i, j, rowGap, colGap),
+                                        End = GetParsePoint(scaleX, scaleY, end, i, j, rowGap, colGap)
+                                    };
+                                    lstPrintInfos.Add(p0);
+                                }
+                                else if (type.Contains("直线"))
+                                {
+                                    PrintInfo p1 = new PrintInfo()
+                                    {
+                                        PrtType = PrintType.Line,
+                                        PrtColor = ColorTranslator.FromHtml(color),
+                                        Width = width,
+                                        PrtDashStyle = (DashStyle)(dashstyle),
 
-                        Start = new PointF(this.margin_tb + scaleX * int.Parse(start.Trim(new char[] { '(', ')' }).Split(',')[0]), this.margin_lr + scaleY * int.Parse(start.Trim(new char[] { '(', ')' }).Split(',')[1])),
-                        End = new PointF(this.margin_tb + scaleX * int.Parse(end.Trim(new char[] { '(', ')' }).Split(',')[0]), this.margin_lr + scaleY * int.Parse(end.Trim(new char[] { '(', ')' }).Split(',')[1]))
-                    };
-                    lstPrintInfos.Add(p1);
-                }
-                else if (type.Contains("点"))
-                {
-                    PrintInfo p2 = new PrintInfo()
-                    {
-                        PrtType = PrintType.Point,
+                                        Start = GetParsePoint(scaleX, scaleY, start, i, j, rowGap, colGap),
+                                        End = GetParsePoint(scaleX, scaleY, end, i, j, rowGap, colGap)
+                                    };
+                                    lstPrintInfos.Add(p1);
+                                }
+                                else if (type.Contains("点"))
+                                {
+                            PrintInfo p2 = new PrintInfo()
+                            {
+                                PrtType = PrintType.Point,
 
-                        PrtColor = ColorTranslator.FromHtml(color),
-                        Width = width,
-                        Start = new PointF(this.margin_tb + scaleX * int.Parse(start.Trim(new char[] { '(', ')' }).Split(',')[0]), this.margin_lr + scaleY * int.Parse(start.Trim(new char[] { '(', ')' }).Split(',')[1])),
+                                PrtColor = ColorTranslator.FromHtml(color),
+                                Width = width,
+                                Start = GetParsePoint(scaleX,scaleY,start, i, j, rowGap, colGap)
+                            };
 
-                    };
-                    lstPrintInfos.Add(p2);
+                                    lstPrintInfos.Add(p2);
+                                }
+                            }
+
                 }
-            }
+            } 
 
             printHelper.PrintInfos = lstPrintInfos;
 
@@ -453,6 +460,11 @@ namespace WindowsFormsApplication1
             this.ppVControl.InvalidatePreview();//刷新文档的预览，重新调用PrintDocument的Print方法
         }
 
+        PointF GetParsePoint(float scaleX,float scaleY,string point,int i,int j,float rowGap, float colGap)
+        {
+            return new PointF(this.margin_tb + scaleX *(j * colGap + float.Parse(point.Trim(new char[] { '(', ')' }).Split(',')[0])),
+                              this.margin_lr + scaleY *(i * rowGap + float.Parse(point.Trim(new char[] { '(', ')' }).Split(',')[1]))); 
+        }
         private void BtnCommand_Click(object sender, EventArgs e)
         {
             System.Windows.Forms.Button button = sender as System.Windows.Forms.Button;

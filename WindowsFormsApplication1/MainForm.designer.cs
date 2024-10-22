@@ -82,6 +82,7 @@ namespace WindowsFormsApplication1
             this.txtWidth = new System.Windows.Forms.TextBox();
             this.comPrtType = new System.Windows.Forms.ComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.myComboBox1 = new WindowsFormsApplication1.myComboBox(this.components);
             this.lstContent = new System.Windows.Forms.ListView();
             this.label22 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
@@ -109,7 +110,6 @@ namespace WindowsFormsApplication1
             this.btnDown = new System.Windows.Forms.Button();
             this.btnUp = new System.Windows.Forms.Button();
             this.ucCheck1 = new WindowsFormsApplication1.UCCheck();
-            this.myComboBox1 = new WindowsFormsApplication1.myComboBox(this.components);
             this.label3 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.groupBox2.SuspendLayout();
@@ -200,7 +200,7 @@ namespace WindowsFormsApplication1
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(154, 236);
+            this.btnDelete.Location = new System.Drawing.Point(228, 236);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(4);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(70, 42);
@@ -211,7 +211,7 @@ namespace WindowsFormsApplication1
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(228, 236);
+            this.btnAdd.Location = new System.Drawing.Point(154, 236);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(4);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(70, 42);
@@ -329,6 +329,7 @@ namespace WindowsFormsApplication1
             // 
             // txtaxisLengthY
             // 
+            this.txtaxisLengthY.Enabled = false;
             this.txtaxisLengthY.Location = new System.Drawing.Point(118, 99);
             this.txtaxisLengthY.Name = "txtaxisLengthY";
             this.txtaxisLengthY.Size = new System.Drawing.Size(96, 28);
@@ -337,6 +338,7 @@ namespace WindowsFormsApplication1
             // 
             // txtaxisLengthX
             // 
+            this.txtaxisLengthX.Enabled = false;
             this.txtaxisLengthX.Location = new System.Drawing.Point(118, 66);
             this.txtaxisLengthX.Name = "txtaxisLengthX";
             this.txtaxisLengthX.Size = new System.Drawing.Size(96, 28);
@@ -611,6 +613,16 @@ namespace WindowsFormsApplication1
             this.panel2.Size = new System.Drawing.Size(1190, 238);
             this.panel2.TabIndex = 20;
             // 
+            // myComboBox1
+            // 
+            this.myComboBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.myComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.myComboBox1.Location = new System.Drawing.Point(975, 46);
+            this.myComboBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.myComboBox1.Name = "myComboBox1";
+            this.myComboBox1.Size = new System.Drawing.Size(122, 29);
+            this.myComboBox1.TabIndex = 22;
+            // 
             // lstContent
             // 
             this.lstContent.HideSelection = false;
@@ -738,7 +750,7 @@ namespace WindowsFormsApplication1
             // 
             // btnModi
             // 
-            this.btnModi.Location = new System.Drawing.Point(302, 236);
+            this.btnModi.Location = new System.Drawing.Point(376, 235);
             this.btnModi.Name = "btnModi";
             this.btnModi.Size = new System.Drawing.Size(70, 42);
             this.btnModi.TabIndex = 22;
@@ -748,7 +760,7 @@ namespace WindowsFormsApplication1
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(376, 236);
+            this.btnClear.Location = new System.Drawing.Point(302, 236);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(70, 42);
             this.btnClear.TabIndex = 23;
@@ -776,7 +788,7 @@ namespace WindowsFormsApplication1
             // 
             // vScrollBar1
             // 
-            this.vScrollBar1.Location = new System.Drawing.Point(423, 280);
+            this.vScrollBar1.Location = new System.Drawing.Point(420, 299);
             this.vScrollBar1.Name = "vScrollBar1";
             this.vScrollBar1.Size = new System.Drawing.Size(10, 447);
             this.vScrollBar1.TabIndex = 25;
@@ -784,9 +796,9 @@ namespace WindowsFormsApplication1
             // 
             // hScrollBar1
             // 
-            this.hScrollBar1.Location = new System.Drawing.Point(450, 264);
+            this.hScrollBar1.Location = new System.Drawing.Point(469, 264);
             this.hScrollBar1.Name = "hScrollBar1";
-            this.hScrollBar1.Size = new System.Drawing.Size(927, 14);
+            this.hScrollBar1.Size = new System.Drawing.Size(932, 14);
             this.hScrollBar1.TabIndex = 26;
             this.hScrollBar1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.vScrollBar1_Scroll);
             // 
@@ -845,25 +857,15 @@ namespace WindowsFormsApplication1
             this.ucCheck1.Checked = false;
             this.ucCheck1.CheckStyleX = WindowsFormsApplication1.CheckStyle.style1;
             this.ucCheck1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ucCheck1.Location = new System.Drawing.Point(95, 3);
+            this.ucCheck1.Location = new System.Drawing.Point(95, 4);
             this.ucCheck1.Name = "ucCheck1";
-            this.ucCheck1.Size = new System.Drawing.Size(74, 42);
+            this.ucCheck1.Size = new System.Drawing.Size(62, 30);
             this.ucCheck1.TabIndex = 28;
-            // 
-            // myComboBox1
-            // 
-            this.myComboBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.myComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.myComboBox1.Location = new System.Drawing.Point(975, 46);
-            this.myComboBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.myComboBox1.Name = "myComboBox1";
-            this.myComboBox1.Size = new System.Drawing.Size(122, 29);
-            this.myComboBox1.TabIndex = 22;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(9, 15);
+            this.label3.Location = new System.Drawing.Point(8, 10);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(80, 18);
             this.label3.TabIndex = 29;
@@ -873,9 +875,9 @@ namespace WindowsFormsApplication1
             // 
             this.panel4.Controls.Add(this.label3);
             this.panel4.Controls.Add(this.ucCheck1);
-            this.panel4.Location = new System.Drawing.Point(228, 289);
+            this.panel4.Location = new System.Drawing.Point(226, 289);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(186, 51);
+            this.panel4.Size = new System.Drawing.Size(163, 38);
             this.panel4.TabIndex = 30;
             // 
             // MainForm
