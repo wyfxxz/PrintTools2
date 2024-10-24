@@ -112,6 +112,8 @@ namespace WindowsFormsApplication1
             this.ucCheck1 = new WindowsFormsApplication1.UCCheck();
             this.label3 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.ucCheck2 = new WindowsFormsApplication1.UCCheck();
+            this.label4 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -873,12 +875,36 @@ namespace WindowsFormsApplication1
             // 
             // panel4
             // 
+            this.panel4.Controls.Add(this.ucCheck2);
+            this.panel4.Controls.Add(this.label4);
             this.panel4.Controls.Add(this.label3);
             this.panel4.Controls.Add(this.ucCheck1);
             this.panel4.Location = new System.Drawing.Point(226, 289);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(163, 38);
+            this.panel4.Size = new System.Drawing.Size(163, 79);
             this.panel4.TabIndex = 30;
+            // 
+            // ucCheck2
+            // 
+            this.ucCheck2.BackColor = System.Drawing.Color.Transparent;
+            this.ucCheck2.Checked = false;
+            this.ucCheck2.CheckStyleX = WindowsFormsApplication1.CheckStyle.style1;
+            this.ucCheck2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ucCheck2.Location = new System.Drawing.Point(94, 40);
+            this.ucCheck2.Name = "ucCheck2";
+            this.ucCheck2.Size = new System.Drawing.Size(62, 30);
+            this.ucCheck2.TabIndex = 30;
+            
+            this.ucCheck2.Click += new System.EventHandler(this.ucCheck2_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(8, 46);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(44, 18);
+            this.label4.TabIndex = 29;
+            this.label4.Text = "模板";
             // 
             // MainForm
             // 
@@ -1053,6 +1079,8 @@ namespace WindowsFormsApplication1
         private UCCheck ucCheck1;
         private Label label3;
         private Panel panel4;
+        private UCCheck ucCheck2;
+        private Label label4;
     }
 }
 

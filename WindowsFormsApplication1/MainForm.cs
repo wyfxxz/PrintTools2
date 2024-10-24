@@ -77,6 +77,8 @@ namespace WindowsFormsApplication1
             this.btnDown.Text = "\u2193";
             this.btnLeft.Text = " \u2190";
             this.btnRight.Text = "\u2192";
+
+            this.label4.Text = "模板";
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -473,7 +475,8 @@ namespace WindowsFormsApplication1
             {
                 case "添加":
                       lvi = new ListViewItem();
-                    lvi.Text = "1";
+
+                    lvi.Text = this.ucCheck2.Checked==false?"模板":"数据";
                     lvi.SubItems.Add(this.comPrtType.Text.Trim());
                     lvi.SubItems.Add(ColorTranslator.ToHtml(this.lblColor.BackColor));
                     lvi.SubItems.Add(this.txtStart.Text.Trim());
@@ -495,7 +498,7 @@ namespace WindowsFormsApplication1
                         int index = lstContent.SelectedIndices[0];
                         if (lstContent.Items[index].SubItems[1].Text == this.comPrtType.Text.Trim())
                         {
-                            //lstContent.Items[index].SubItems[1].Text = this.comPrtType.Text.Trim();
+                            lstContent.Items[index].SubItems[0].Text = this.ucCheck2.Checked == false ? "模板" : "数据";
                             lstContent.Items[index].SubItems[2].Text = ColorTranslator.ToHtml(this.lblColor.BackColor);
                             lstContent.Items[index].SubItems[3].Text = this.txtStart.Text.Trim();
                             if (this.txtEnd.Enabled == true)
@@ -550,7 +553,7 @@ namespace WindowsFormsApplication1
                             {
                                 str = line.Split(new char[] { '\t' });
                                  lvi = new ListViewItem();
-                                lvi.Text = "1";
+                                
                                 lvi.SubItems.Add(str[0]);
                                 lvi.SubItems.Add(str[1]);
                                 lvi.SubItems.Add(str[2]);
@@ -563,6 +566,7 @@ namespace WindowsFormsApplication1
                                 lvi.SubItems.Add(str[8]);
                                 lvi.SubItems.Add(str[9]);
                                 lvi.SubItems.Add(str[10]);
+                                lvi.Text = str[11]==""?"模板": str[11];
                                 this.lstContent.Items.Add(lvi);
                             }
                         }
@@ -592,6 +596,7 @@ namespace WindowsFormsApplication1
                             foreach (ListViewItem li in this.lstContent.Items)
                             {
                                 PrintInfo plvi = new PrintInfo();
+                                string data_template=li.SubItems[0].Text;
                                 string type = li.SubItems[1].Text;
                                 string color = li.SubItems[2].Text;
                                 string start = li.SubItems[3].Text;
@@ -607,7 +612,7 @@ namespace WindowsFormsApplication1
                                 sw.WriteLine(type + "\t" +
                                     color + "\t" + start + "\t" + end + "\t" + size + "\t" +
                                         fontstyle + "\t" + content + "\t" + row + "\t" +
-                                            col + "\t" + dashstyle + "\t" + width + "\t");
+                                            col + "\t" + dashstyle + "\t" + width + "\t"+data_template+"\t");
                             }
                         }
                         catch (Exception ex)
@@ -941,7 +946,21 @@ namespace WindowsFormsApplication1
             PointF padjust = AdjustPoint(pstart, flagLR, flagUD);
             string startAdjust = "(" + padjust.X.ToString() + "," + padjust.Y.ToString() + ")";
             return startAdjust;
-        }　
-     　
+        }
+
+        private void ucCheck2_Click(object sender, EventArgs e)
+        {
+            UCCheck uCCheck = sender as UCCheck;
+            if (uCCheck.Checked == false)
+            {
+                this.label4.Text = "模板";
+            }
+            else
+              { this.label4.Text = "数据";
+                this.lblColor.BackColor = Color.Red;
+            }
+
+
+        }
     }
 }
