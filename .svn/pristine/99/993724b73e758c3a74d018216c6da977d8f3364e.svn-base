@@ -13,7 +13,6 @@ using System.Drawing.Drawing2D;
 using System.IO;
 //using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Diagnostics.Eventing.Reader;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 
 namespace WindowsFormsApplication1
@@ -34,7 +33,6 @@ namespace WindowsFormsApplication1
         public List<PrintInfo> PrintInfos { get; set; }
 
         private PrintHelper printHelper = new PrintHelper();
-        private float zoom = 1.0f; // 初始缩放比例为1
 
         public MainForm()
         {
@@ -69,7 +67,6 @@ namespace WindowsFormsApplication1
             this.myComboBox1.SelectedIndex = 0;
 
             this.comPrtType.Items.Add("文本");
-            this.comPrtType.Items.Add("格式文本");
             this.comPrtType.Items.Add("表格");
             this.comPrtType.Items.Add("直线");
             this.comPrtType.Items.Add("点");
@@ -397,37 +394,20 @@ namespace WindowsFormsApplication1
                                 int dashstyle = int.Parse(lvi.SubItems[10].Text);
                                 float width = float.Parse(lvi.SubItems[11].Text);
 
-                                if (type=="格式文本")
+                                if (type.Contains("文本"))
                                 {
                                     PrintInfo p = new PrintInfo()
                                     {
-                                        PrtType = PrintType.FormatText,
+                                        PrtType = PrintType.Text,
                                         PrtColor = ColorTranslator.FromHtml(color),
                                         Content = content,
                                         Size = size,
                                         FontStyle = (FontStyle)Enum.Parse(typeof(FontStyle), fontstyle),
-                                        Start = GetParsePoint(scaleX, scaleY, start, i, j, rowGap, colGap),
-                                        End = GetParsePoint(scaleX, scaleY, end, i, j, rowGap, colGap)
+                                        Start = GetParsePoint(scaleX, scaleY, start,i,j, rowGap, colGap)
                                     }; //margin_tb + i * scaleX  ,margin_lr + j * scaleY
                                     lstPrintInfos.Add(p);
                                 }
-                        
-                                else if (type=="文本")
-                                        {
-                                            PrintInfo p = new PrintInfo()
-                                            {
-                                                PrtType = PrintType.Text,
-                                                PrtColor = ColorTranslator.FromHtml(color),
-                                                Content = content,
-                                                Size = size,
-                                                FontStyle = (FontStyle)Enum.Parse(typeof(FontStyle), fontstyle),
-                                                Start = GetParsePoint(scaleX, scaleY, start, i, j, rowGap, colGap),
-                                                End = GetParsePoint(scaleX, scaleY, end, i, j, rowGap, colGap)
-                                            }; //margin_tb + i * scaleX  ,margin_lr + j * scaleY
-                                            lstPrintInfos.Add(p);
-                                        }
-                                
-                                else if (type == "表格")
+                                else if (type.Contains("表格"))
                                 {
                                     PrintInfo p0 = new PrintInfo()
                                     {
@@ -442,7 +422,7 @@ namespace WindowsFormsApplication1
                                     };
                                     lstPrintInfos.Add(p0);
                                 }
-                                else if (type == "直线")
+                                else if (type.Contains("直线"))
                                 {
                                     PrintInfo p1 = new PrintInfo()
                                     {
@@ -456,16 +436,16 @@ namespace WindowsFormsApplication1
                                     };
                                     lstPrintInfos.Add(p1);
                                 }
-                                else if (type == "点")
+                                else if (type.Contains("点"))
                                 {
-                                    PrintInfo p2 = new PrintInfo()
-                                    {
-                                        PrtType = PrintType.Point,
+                            PrintInfo p2 = new PrintInfo()
+                            {
+                                PrtType = PrintType.Point,
 
-                                        PrtColor = ColorTranslator.FromHtml(color),
-                                        Width = width,
-                                        Start = GetParsePoint(scaleX,scaleY,start, i, j, rowGap, colGap)
-                                    };
+                                PrtColor = ColorTranslator.FromHtml(color),
+                                Width = width,
+                                Start = GetParsePoint(scaleX,scaleY,start, i, j, rowGap, colGap)
+                            };
 
                                     lstPrintInfos.Add(p2);
                                 }
@@ -500,10 +480,10 @@ namespace WindowsFormsApplication1
                     lvi.SubItems.Add(this.comPrtType.Text.Trim());
                     lvi.SubItems.Add(ColorTranslator.ToHtml(this.lblColor.BackColor));
                     lvi.SubItems.Add(this.txtStart.Text.Trim());
-                    lvi.SubItems.Add(this.txtEnd.Text.Trim());
+                    lvi.SubItems.Add(this.txtEnd.Enabled == false ? "(0,0)" : this.txtEnd.Text.Trim());
                     lvi.SubItems.Add(this.txtSize.Enabled == false ? "0" : this.txtSize.Text.Trim());
                     lvi.SubItems.Add((this.chkBold.Enabled == false ? "0" : (this.chkBold.Checked ? FontStyle.Bold : FontStyle.Regular).ToString()));
-                    lvi.SubItems.Add(this.ucCheck2.Checked == true ? "999" : this.txtTitle.Text.Trim());//模板：内容为0，数据：内容为999
+                    lvi.SubItems.Add(this.txtTitle.Enabled == false ? "0" : this.txtTitle.Text.Trim());
 
                     lvi.SubItems.Add(this.txtRow.Enabled == false ? "0" : this.txtRow.Text.Trim());
                     lvi.SubItems.Add(this.txtColumn.Enabled == false ? "0" : this.txtColumn.Text.Trim());
@@ -596,7 +576,6 @@ namespace WindowsFormsApplication1
                             throw;
                         }
                         finally { sr.Close(); }
-                        this.toolStripStatusLabel2.Text= openFileDialog1.FileName;
 
                     }
                     break;
@@ -616,7 +595,7 @@ namespace WindowsFormsApplication1
                                         + this.txtLabelRow.Text + "\t" + this.txtLabelCol.Text);
                             foreach (ListViewItem li in this.lstContent.Items)
                             {
-                                //PrintInfo plvi = new PrintInfo();
+                                PrintInfo plvi = new PrintInfo();
                                 string data_template=li.SubItems[0].Text;
                                 string type = li.SubItems[1].Text;
                                 string color = li.SubItems[2].Text;
@@ -660,14 +639,7 @@ namespace WindowsFormsApplication1
                     }
 
                         break;
-                case "放大":
-                    this.ppVControl.Zoom = this.ppVControl.Zoom * 1.1f;
-                    break;
-                case "缩小":
-                    this.ppVControl.Zoom = this.ppVControl.Zoom / 1.1f;
-                    break;
-
-
+            
             }  
            
         }
@@ -687,14 +659,7 @@ namespace WindowsFormsApplication1
                     this.txtWidth.Enabled = false;
 
                     break;
-                case "格式文本":
-                    this.txtEnd.Enabled = true;
-                    this.txtRow.Enabled = false;
-                    this.txtColumn.Enabled = false;
-                    this.myComboBox1.Enabled = false;
-                    this.txtWidth.Enabled = false;
 
-                    break;
                 case "表格":
                     this.txtSize.Enabled = false;
                     this.chkBold.Enabled = false;
@@ -764,17 +729,7 @@ namespace WindowsFormsApplication1
                     case "文本":
                         this.comPrtType.SelectedIndex = 0;
 
-                        this.txtEnd.Enabled = true;
-                        this.txtRow.Enabled = false;
-                        this.txtColumn.Enabled = false;
-                        this.myComboBox1.Enabled = false;
-                        this.txtWidth.Enabled = false;
-                        break;
-
-                    case "格式文本":
-                        this.comPrtType.SelectedIndex = 1;
-
-                        this.txtEnd.Enabled = true;
+                        this.txtEnd.Enabled = false;
                         this.txtRow.Enabled = false;
                         this.txtColumn.Enabled = false;
                         this.myComboBox1.Enabled = false;
@@ -782,7 +737,7 @@ namespace WindowsFormsApplication1
                         break;
 
                     case "表格":
-                        this.comPrtType.SelectedIndex = 2;
+                        this.comPrtType.SelectedIndex = 1;
                         this.txtSize.Enabled = false;
                         this.chkBold.Enabled = false;
                         this.txtTitle.Enabled = false;
@@ -791,7 +746,7 @@ namespace WindowsFormsApplication1
                         break;
 
                     case "直线":
-                        this.comPrtType.SelectedIndex = 3;
+                        this.comPrtType.SelectedIndex = 2;
                         this.txtSize.Enabled = false;
                         this.chkBold.Enabled = false;
                         this.txtTitle.Enabled = false;
@@ -800,7 +755,7 @@ namespace WindowsFormsApplication1
                         //MessageBox.Show("C");
                         break;
                     case "点":
-                        this.comPrtType.SelectedIndex = 4;
+                        this.comPrtType.SelectedIndex = 3;
                         this.txtSize.Enabled = false;
                         this.chkBold.Enabled = false;
                         this.txtEnd.Enabled = false;
@@ -894,20 +849,19 @@ namespace WindowsFormsApplication1
 
         private void move1_Click(object sender, EventArgs e)
         {
-            System.Windows.Forms.Button button = sender as System.Windows.Forms.Button;
+            Button button = sender as Button;
             
         }
 
         private void btn_MoveClick(object sender, EventArgs e)
         {
-            System.Windows.Forms.Button btn = sender as System.Windows.Forms.Button;
+            Button btn = sender as Button;
             int flagUD = 0, flagLR=0;
-            int gap =int.Parse( this.textBox1.Text);
             if (btn == null) return;
-            if(btn==btnUp) flagUD = -gap;
-            else if(btn==btnDown) flagUD = +gap;
-            else if(btn==btnLeft) flagLR = -gap; 
-            else if(btn==btnRight) flagLR = +gap;    
+            if(btn==btnUp) flagUD = -1;
+            else if(btn==btnDown) flagUD = +1;
+            else if(btn==btnLeft) flagLR = -1; 
+            else if(btn==btnRight) flagLR = +1;    
              
 
             if (lstContent.SelectedItems.Count > 0)
@@ -935,19 +889,6 @@ namespace WindowsFormsApplication1
 
                     switch (type)
                     {
-                        case "格式文本":
-                            pend = new PointF(int.Parse(end.Trim(new char[] { '(', ')' }).Split(',')[0]), int.Parse(end.Trim(new char[] { '(', ')' }).Split(',')[1]));
-
-                            startAdjust = MoveLocation(pstart, flagUD, flagLR);
-                            endAdjust = MoveLocation(pend, flagUD, flagLR);
-
-                            item.SubItems[3].Text = startAdjust;
-                            this.txtStart.Text = startAdjust;
-
-                            item.SubItems[4].Text = endAdjust;
-                            this.txtEnd.Text = endAdjust;
-
-                            break;
                         case "文本":
                             startAdjust = MoveLocation(pstart, flagUD, flagLR);
                             item.SubItems[3].Text = startAdjust;
@@ -1022,48 +963,6 @@ namespace WindowsFormsApplication1
             }
 
 
-        }
-
-        private void ppVControl_MouseMove(object sender, MouseEventArgs e)
-        {
-            //// 判断滚轮方向
-            //if (e.Delta > 0)
-            //{
-            //    // 放大操作
-            //    zoom *= 1.1f;
-            //}
-            ////else
-            ////{
-            ////    // 缩小操作
-            ////    zoom /= 1.1f;
-            ////}
-
-            //// 应用缩放比例
-            //this.ppVControl.Zoom = zoom;
-        }
-
-        private void lstContent_DoubleClick(object sender, EventArgs e)
-        {
-
-            if (lstContent.SelectedItems.Count > 0)
-            {
-                // 获取被双击的项
-             //   ListViewItem item = lstContent.SelectedItems[0];
-             //   PrintInfo plvi = new PrintInfo();
-             //   //string data_template = li.SubItems[0].Text;
-             //    plvi.PrtType = item.SubItems[1].Text;
-             //  plvi.PrtColor= item.SubItems[2].Text;
-             //   plvi.Start = item.SubItems[3].Text;
-             //   plvi.End = item.SubItems[4].Text;
-             //   plvi.Size= int.Parse(item.SubItems[5].Text);
-             //  plvi.FontStyle = item.SubItems[6].Text;
-             //  plvi.Content = item.SubItems[7].Text;
-             // plvi.Row = int.Parse(item.SubItems[8].Text);
-             // plvi.Column = int.Parse(item.SubItems[9].Text);
-             //plvi.PrtDashStyle = int.Parse(item.SubItems[10].Text);
-             // plvi.Width = float.Parse(item.SubItems[11].Text);
-
-            };
         }
     }
 }

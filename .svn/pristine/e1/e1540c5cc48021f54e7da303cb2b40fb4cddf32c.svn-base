@@ -42,28 +42,10 @@ namespace Model
                 {
                     switch (p.PrtType)
                     {
-                        case PrintType.FormatText://可自动换行
-                            Font tFont = new Font("宋体", p.Size, p.FontStyle);
-                            Brush b = new SolidBrush(p.PrtColor); 
-
-                            Brush fontBrush = SystemBrushes.ControlText;
-
-                            StringFormat sf = new StringFormat();
-
-                            sf.Alignment = StringAlignment.Center;
-                            sf.LineAlignment = StringAlignment.Center;
-                            RectangleF rect = new RectangleF(p.Start, new SizeF(p.End.X - p.Start.X, p.End.Y - p.Start.Y));
-
-                           
-                            //g.DrawString(nodeText, font, fontBrush, this.ClientRectangle, sf);
-                            g.DrawString(p.Content, tFont, b, rect, sf);
-                            break;
                         case PrintType.Text:
-                            Font tFont1 = new Font("宋体", p.Size, p.FontStyle);
-                            Brush b1 = new SolidBrush(p.PrtColor);
-                            g.DrawString(p.Content, tFont1, b1, p.Start);
-
-                           
+                            Font tFont = new Font("宋体", p.Size, p.FontStyle);
+                            Brush b = new SolidBrush(p.PrtColor);
+                            g.DrawString(p.Content, tFont, b, p.Start);
                             break;
                         case PrintType.Line:
                             Pen lineColor1 = new Pen(p.PrtColor, p.Width);
@@ -173,7 +155,6 @@ namespace Model
         Table = 1,
         Line = 2,
         Point=3,
-        FormatText=4,
 
     }
 }
